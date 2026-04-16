@@ -1,0 +1,38 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm / VSCode
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Data & outputs (customize as needed)
+*.jpg
+*.png
+*.jpeg
+*.tif
+*.tiff
+*.mat
+*.pkl
+*.h5
+*.pt
+*.pth
+output/
+results/
+data/
+
+# Keep docs/pdf if needed
+!docs/*.pdf
