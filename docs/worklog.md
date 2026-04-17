@@ -64,3 +64,12 @@
 - 数据集用外挂卷的方式：`BUSAT_DATA_DIR` 环境变量覆盖 `config.py` 里的数据路径，容器内默认指向 `/data`；`config.py` 同时支持 `BUSAT_OUTPUTS_DIR`。
 - `README.md` 补了 `docker build` / `docker run -v` 的用法示例。
 - **尚未本地 build 验证**（当前机器没装 Docker runtime），等装好 Docker Desktop / OrbStack 后再做一次冒烟测试。
+
+### Notion 同步
+
+- 通过 Notion REST API（`@notionhq/notion-mcp-server` 官方同款 internal integration token）把今天的 Part 2 笔记同步到「BME1307 Project 日志」页面（page id `344e41c3-0079-8032-bbfd-fcc5365e5ac0`）。
+- 推送内容：
+  1. `docs/notion_part2_notes.md` —— 8 个 cell 体例的中文工作笔记（83 blocks，含结果表格）。
+  2. `notebooks/part2.ipynb` 的完整渲染 —— markdown cell → 文本 block，code cell → Python code block，image/png output → 通过 `/v1/file_uploads` 上传后以 image block 嵌入，text/html DataFrame → Notion 原生 table（36 blocks）。
+- 实现小坑：macOS 系统 Python 的 LibreSSL 在 `api.notion.com/v1/file_uploads` 握手阶段会抛 `SSLEOFError`，`urllib` 和 `requests` 都受影响；解决办法是改用 `curl` 子进程做 `file_uploads` 创建和二进制上传，其余 JSON 调用仍走 `urllib`。
+- 后续要重复同步，可复用 `/tmp/push_notes_to_notion.py` 和 `/tmp/push_notebook_to_notion.py`（没提交进仓库，避免把 token 相关流程混进主线；要持久化的话可以搬到 `scripts/notion/` 下）。
