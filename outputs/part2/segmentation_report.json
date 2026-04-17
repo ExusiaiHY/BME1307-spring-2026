@@ -1,0 +1,1091 @@
+{
+  "n": 120,
+  "fallback_count": 0,
+  "mean_foreground_ratio": 0.4598622594849135,
+  "median_foreground_ratio": 0.48101746913335625,
+  "min_foreground_ratio": 0.1349507735583685,
+  "max_foreground_ratio": 0.736578812465751,
+  "mean_centroid_offset": 0.07368599392861408,
+  "per_image": [
+    {
+      "image_id": 2,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.37569275644141953,
+      "centroid_offset": 0.10845235744845079,
+      "extras": {}
+    },
+    {
+      "image_id": 3,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6113947295049658,
+      "centroid_offset": 0.08731557003077542,
+      "extras": {}
+    },
+    {
+      "image_id": 4,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.32506035731530664,
+      "centroid_offset": 0.09873421565864797,
+      "extras": {}
+    },
+    {
+      "image_id": 5,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6126382063882064,
+      "centroid_offset": 0.08184358544013275,
+      "extras": {}
+    },
+    {
+      "image_id": 6,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4422421194652275,
+      "centroid_offset": 0.09888623207728656,
+      "extras": {}
+    },
+    {
+      "image_id": 7,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5451291013643026,
+      "centroid_offset": 0.05409268299236987,
+      "extras": {}
+    },
+    {
+      "image_id": 8,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.49921671647546517,
+      "centroid_offset": 0.08405957903154232,
+      "extras": {}
+    },
+    {
+      "image_id": 9,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5264778325123153,
+      "centroid_offset": 0.012472224363351665,
+      "extras": {}
+    },
+    {
+      "image_id": 10,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.681001001001001,
+      "centroid_offset": 0.03397117413029859,
+      "extras": {}
+    },
+    {
+      "image_id": 11,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.7337909577477046,
+      "centroid_offset": 0.08012937074305006,
+      "extras": {}
+    },
+    {
+      "image_id": 12,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.19316909294512877,
+      "centroid_offset": 0.0951600153523681,
+      "extras": {}
+    },
+    {
+      "image_id": 13,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5571691954300912,
+      "centroid_offset": 0.043609922405568616,
+      "extras": {}
+    },
+    {
+      "image_id": 14,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6745118610479688,
+      "centroid_offset": 0.040516685855076146,
+      "extras": {}
+    },
+    {
+      "image_id": 15,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.39016913700458006,
+      "centroid_offset": 0.10267775442175418,
+      "extras": {}
+    },
+    {
+      "image_id": 16,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5609454599940066,
+      "centroid_offset": 0.08121513325740394,
+      "extras": {}
+    },
+    {
+      "image_id": 17,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5850328598685606,
+      "centroid_offset": 0.07876266790508811,
+      "extras": {}
+    },
+    {
+      "image_id": 18,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4913197308841592,
+      "centroid_offset": 0.0902661405027291,
+      "extras": {}
+    },
+    {
+      "image_id": 19,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.736578812465751,
+      "centroid_offset": 0.0051604758932586176,
+      "extras": {}
+    },
+    {
+      "image_id": 20,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6416079062794958,
+      "centroid_offset": 0.058935544547234216,
+      "extras": {}
+    },
+    {
+      "image_id": 21,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5447351421188631,
+      "centroid_offset": 0.12580858353156693,
+      "extras": {}
+    },
+    {
+      "image_id": 22,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.7297266835728374,
+      "centroid_offset": 0.05771304999939209,
+      "extras": {}
+    },
+    {
+      "image_id": 23,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5941661149120872,
+      "centroid_offset": 0.03922666151175037,
+      "extras": {}
+    },
+    {
+      "image_id": 24,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.7298440391223896,
+      "centroid_offset": 0.047329404498162184,
+      "extras": {}
+    },
+    {
+      "image_id": 25,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.33261494252873564,
+      "centroid_offset": 0.11728360274364286,
+      "extras": {}
+    },
+    {
+      "image_id": 26,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.22962962962962963,
+      "centroid_offset": 0.062405730488435104,
+      "extras": {}
+    },
+    {
+      "image_id": 27,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.46663621483765366,
+      "centroid_offset": 0.10315651316231422,
+      "extras": {}
+    },
+    {
+      "image_id": 28,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.45644855381697486,
+      "centroid_offset": 0.10746288112481434,
+      "extras": {}
+    },
+    {
+      "image_id": 29,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.25823451910408435,
+      "centroid_offset": 0.03818353587240279,
+      "extras": {}
+    },
+    {
+      "image_id": 30,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2865175406429532,
+      "centroid_offset": 0.08438171517058128,
+      "extras": {}
+    },
+    {
+      "image_id": 31,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5264323911382734,
+      "centroid_offset": 0.0920462602581169,
+      "extras": {}
+    },
+    {
+      "image_id": 32,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.563196366475055,
+      "centroid_offset": 0.0667183368237821,
+      "extras": {}
+    },
+    {
+      "image_id": 33,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4400179654165731,
+      "centroid_offset": 0.11758960548922326,
+      "extras": {}
+    },
+    {
+      "image_id": 34,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.65234375,
+      "centroid_offset": 0.1013720464198549,
+      "extras": {}
+    },
+    {
+      "image_id": 35,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.3918918918918919,
+      "centroid_offset": 0.10817253051973344,
+      "extras": {}
+    },
+    {
+      "image_id": 36,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.30252356339312864,
+      "centroid_offset": 0.09763968171386095,
+      "extras": {}
+    },
+    {
+      "image_id": 37,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.42138364779874216,
+      "centroid_offset": 0.061138433829336675,
+      "extras": {}
+    },
+    {
+      "image_id": 38,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4695746072303083,
+      "centroid_offset": 0.07306120439022845,
+      "extras": {}
+    },
+    {
+      "image_id": 39,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.400019729703068,
+      "centroid_offset": 0.05702503115914697,
+      "extras": {}
+    },
+    {
+      "image_id": 40,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6503955631677677,
+      "centroid_offset": 0.029448608612940734,
+      "extras": {}
+    },
+    {
+      "image_id": 41,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4237645256033712,
+      "centroid_offset": 0.04678712496409167,
+      "extras": {}
+    },
+    {
+      "image_id": 42,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4284568781183179,
+      "centroid_offset": 0.09892055991502968,
+      "extras": {}
+    },
+    {
+      "image_id": 43,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.3138958636183428,
+      "centroid_offset": 0.07770021311742122,
+      "extras": {}
+    },
+    {
+      "image_id": 44,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5986448784376246,
+      "centroid_offset": 0.07317892091816622,
+      "extras": {}
+    },
+    {
+      "image_id": 45,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.36488637645554706,
+      "centroid_offset": 0.021312489909796947,
+      "extras": {}
+    },
+    {
+      "image_id": 46,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5809370753068577,
+      "centroid_offset": 0.0378310865995033,
+      "extras": {}
+    },
+    {
+      "image_id": 47,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.40724918229757695,
+      "centroid_offset": 0.021277944756406725,
+      "extras": {}
+    },
+    {
+      "image_id": 48,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6438071225969114,
+      "centroid_offset": 0.04434070829070784,
+      "extras": {}
+    },
+    {
+      "image_id": 49,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.23799892125134844,
+      "centroid_offset": 0.10372194828041119,
+      "extras": {}
+    },
+    {
+      "image_id": 50,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.16294501790604593,
+      "centroid_offset": 0.028682462519864386,
+      "extras": {}
+    },
+    {
+      "image_id": 51,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6583289680460974,
+      "centroid_offset": 0.08466825066598044,
+      "extras": {}
+    },
+    {
+      "image_id": 52,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5812884934988758,
+      "centroid_offset": 0.09941157033905067,
+      "extras": {}
+    },
+    {
+      "image_id": 53,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2859981933152665,
+      "centroid_offset": 0.04523053719475451,
+      "extras": {}
+    },
+    {
+      "image_id": 54,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4161008403361345,
+      "centroid_offset": 0.0950949601688779,
+      "extras": {}
+    },
+    {
+      "image_id": 55,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6460027100271003,
+      "centroid_offset": 0.08546172827440114,
+      "extras": {}
+    },
+    {
+      "image_id": 56,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6237820512820513,
+      "centroid_offset": 0.04080591800590538,
+      "extras": {}
+    },
+    {
+      "image_id": 57,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.3251663641863279,
+      "centroid_offset": 0.08478202053613901,
+      "extras": {}
+    },
+    {
+      "image_id": 58,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.43284406565656564,
+      "centroid_offset": 0.09099309883484707,
+      "extras": {}
+    },
+    {
+      "image_id": 59,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5087411935736385,
+      "centroid_offset": 0.11986142532255266,
+      "extras": {}
+    },
+    {
+      "image_id": 60,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.569743935309973,
+      "centroid_offset": 0.11616590788985409,
+      "extras": {}
+    },
+    {
+      "image_id": 61,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5379540027648612,
+      "centroid_offset": 0.10374735920112643,
+      "extras": {}
+    },
+    {
+      "image_id": 62,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4562333844400996,
+      "centroid_offset": 0.06708678231769769,
+      "extras": {}
+    },
+    {
+      "image_id": 63,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5411671661671662,
+      "centroid_offset": 0.09353049989264009,
+      "extras": {}
+    },
+    {
+      "image_id": 64,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5628839146277981,
+      "centroid_offset": 0.039445136434347855,
+      "extras": {}
+    },
+    {
+      "image_id": 65,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5860733695652174,
+      "centroid_offset": 0.06721324596482892,
+      "extras": {}
+    },
+    {
+      "image_id": 66,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6281188673955705,
+      "centroid_offset": 0.10700628052502245,
+      "extras": {}
+    },
+    {
+      "image_id": 67,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.30205585264408796,
+      "centroid_offset": 0.13276463749540804,
+      "extras": {}
+    },
+    {
+      "image_id": 68,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5705250049157764,
+      "centroid_offset": 0.1087222165323454,
+      "extras": {}
+    },
+    {
+      "image_id": 69,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.48384667915740076,
+      "centroid_offset": 0.07619483650120673,
+      "extras": {}
+    },
+    {
+      "image_id": 70,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2900895021443222,
+      "centroid_offset": 0.03631762031547527,
+      "extras": {}
+    },
+    {
+      "image_id": 71,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.17973547472838922,
+      "centroid_offset": 0.04075260714875293,
+      "extras": {}
+    },
+    {
+      "image_id": 72,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.49505368277931455,
+      "centroid_offset": 0.034110150130558514,
+      "extras": {}
+    },
+    {
+      "image_id": 73,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.3543044291952589,
+      "centroid_offset": 0.18337488844117944,
+      "extras": {}
+    },
+    {
+      "image_id": 74,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.661125,
+      "centroid_offset": 0.018941563134806785,
+      "extras": {}
+    },
+    {
+      "image_id": 75,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.1349507735583685,
+      "centroid_offset": 0.0030154322872489683,
+      "extras": {}
+    },
+    {
+      "image_id": 76,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.48508846674352163,
+      "centroid_offset": 0.10959407985614653,
+      "extras": {}
+    },
+    {
+      "image_id": 77,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5006530410533375,
+      "centroid_offset": 0.04589371721872913,
+      "extras": {}
+    },
+    {
+      "image_id": 78,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.49246849942726234,
+      "centroid_offset": 0.006000329838092751,
+      "extras": {}
+    },
+    {
+      "image_id": 79,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5794656888423259,
+      "centroid_offset": 0.10113359620594022,
+      "extras": {}
+    },
+    {
+      "image_id": 80,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6719746789773193,
+      "centroid_offset": 0.05021966836614268,
+      "extras": {}
+    },
+    {
+      "image_id": 81,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6632501152756736,
+      "centroid_offset": 0.04949856021546485,
+      "extras": {}
+    },
+    {
+      "image_id": 82,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.25946912077882567,
+      "centroid_offset": 0.023784222295710283,
+      "extras": {}
+    },
+    {
+      "image_id": 83,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.31919206038579817,
+      "centroid_offset": 0.11750516750556028,
+      "extras": {}
+    },
+    {
+      "image_id": 84,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.40753045404208194,
+      "centroid_offset": 0.0746189035429755,
+      "extras": {}
+    },
+    {
+      "image_id": 85,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.29948038756055634,
+      "centroid_offset": 0.06406945169050961,
+      "extras": {}
+    },
+    {
+      "image_id": 86,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4972528083639195,
+      "centroid_offset": 0.09007499746025065,
+      "extras": {}
+    },
+    {
+      "image_id": 87,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2087577160493827,
+      "centroid_offset": 0.0907435290901639,
+      "extras": {}
+    },
+    {
+      "image_id": 88,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.34324776183798944,
+      "centroid_offset": 0.04050408588604506,
+      "extras": {}
+    },
+    {
+      "image_id": 89,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.6377921418474756,
+      "centroid_offset": 0.09417435881527743,
+      "extras": {}
+    },
+    {
+      "image_id": 90,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.40618653335416344,
+      "centroid_offset": 0.12043870991704092,
+      "extras": {}
+    },
+    {
+      "image_id": 91,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.47818825910931173,
+      "centroid_offset": 0.07638927483078754,
+      "extras": {}
+    },
+    {
+      "image_id": 92,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5190287513969318,
+      "centroid_offset": 0.12414390263100851,
+      "extras": {}
+    },
+    {
+      "image_id": 93,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5974468392882974,
+      "centroid_offset": 0.012112159305547938,
+      "extras": {}
+    },
+    {
+      "image_id": 94,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.220223290775438,
+      "centroid_offset": 0.12402770610553267,
+      "extras": {}
+    },
+    {
+      "image_id": 95,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2261170666919647,
+      "centroid_offset": 0.048343857761104135,
+      "extras": {}
+    },
+    {
+      "image_id": 96,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5251229204553108,
+      "centroid_offset": 0.09551432326266232,
+      "extras": {}
+    },
+    {
+      "image_id": 97,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.28681592039800996,
+      "centroid_offset": 0.06876470395125445,
+      "extras": {}
+    },
+    {
+      "image_id": 98,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5676271186440678,
+      "centroid_offset": 0.006276639887742156,
+      "extras": {}
+    },
+    {
+      "image_id": 99,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.603759207518415,
+      "centroid_offset": 0.06809336226292571,
+      "extras": {}
+    },
+    {
+      "image_id": 100,
+      "label": 1,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.44030530872636137,
+      "centroid_offset": 0.06945645807828343,
+      "extras": {}
+    },
+    {
+      "image_id": 101,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.3553319919517103,
+      "centroid_offset": 0.1749102098968024,
+      "extras": {}
+    },
+    {
+      "image_id": 102,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.24479528105482304,
+      "centroid_offset": 0.0215074796200247,
+      "extras": {}
+    },
+    {
+      "image_id": 103,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.40990327333290627,
+      "centroid_offset": 0.11483230138540913,
+      "extras": {}
+    },
+    {
+      "image_id": 104,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5606909247581372,
+      "centroid_offset": 0.07015506091096511,
+      "extras": {}
+    },
+    {
+      "image_id": 105,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.17876588021778583,
+      "centroid_offset": 0.021094209749116084,
+      "extras": {}
+    },
+    {
+      "image_id": 106,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4300832043599614,
+      "centroid_offset": 0.12844473820824506,
+      "extras": {}
+    },
+    {
+      "image_id": 107,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5562913907284768,
+      "centroid_offset": 0.11216368886367951,
+      "extras": {}
+    },
+    {
+      "image_id": 108,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.18364081325301204,
+      "centroid_offset": 0.03685148486292119,
+      "extras": {}
+    },
+    {
+      "image_id": 109,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2681390661740007,
+      "centroid_offset": 0.02846781144874165,
+      "extras": {}
+    },
+    {
+      "image_id": 110,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.23079070416637587,
+      "centroid_offset": 0.05465347384667014,
+      "extras": {}
+    },
+    {
+      "image_id": 111,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.4560137776950289,
+      "centroid_offset": 0.09540310453775243,
+      "extras": {}
+    },
+    {
+      "image_id": 112,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.30932703659976385,
+      "centroid_offset": 0.06369022728161336,
+      "extras": {}
+    },
+    {
+      "image_id": 113,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.7067753275806967,
+      "centroid_offset": 0.05278594139244512,
+      "extras": {}
+    },
+    {
+      "image_id": 114,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.38286516853932584,
+      "centroid_offset": 0.12080123240067246,
+      "extras": {}
+    },
+    {
+      "image_id": 115,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5031764986864103,
+      "centroid_offset": 0.046492556621966635,
+      "extras": {}
+    },
+    {
+      "image_id": 116,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.2575718185363317,
+      "centroid_offset": 0.054967823401065985,
+      "extras": {}
+    },
+    {
+      "image_id": 117,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.526275631855031,
+      "centroid_offset": 0.02528387242771772,
+      "extras": {}
+    },
+    {
+      "image_id": 118,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.25629168519341927,
+      "centroid_offset": 0.11531385865714085,
+      "extras": {}
+    },
+    {
+      "image_id": 119,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.3578661775383087,
+      "centroid_offset": 0.07098259959355296,
+      "extras": {}
+    },
+    {
+      "image_id": 120,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5844836811128946,
+      "centroid_offset": 0.11865093442973702,
+      "extras": {}
+    },
+    {
+      "image_id": 121,
+      "label": 0,
+      "strategy": "cv",
+      "fallback": false,
+      "foreground_ratio": 0.5637671957671958,
+      "centroid_offset": 0.09161401371447088,
+      "extras": {}
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+.git
+.gitignore
+.venv
+venv
+env
+__pycache__
+*.pyc
+*.pyo
+.ipynb_checkpoints
+.idea
+.vscode
+.DS_Store
+
+# Dataset is mounted at runtime via -v
+Breast-ultrasound-samples/
+
+# Local outputs stay out of the image
+outputs/
+docs/
+*.pdf
+
+# Docker artifacts
+Dockerfile
+.dockerignore

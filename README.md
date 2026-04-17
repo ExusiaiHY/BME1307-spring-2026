@@ -38,3 +38,29 @@ pip install -r requirements.txt
 
 - **BUSAT toolbox**: [下载链接](https://www.tamps.cinvestav.mx/~wgomez/downloads.html)
 - **乳腺超声数据集**: [Breast-ultrasound-samples](https://github.com/Qian-IMMULab/Breast-ultrasound-samples)
+
+## Part 2 Python 流水线
+
+```bash
+# 本地跑：数据放在 Breast-ultrasound-samples/Ultrasound Samples/，输出落在 outputs/part2/
+python scripts/run_part2.py --save-masks
+```
+
+输出位于 `outputs/part2/`：`features_full.csv`、`features_cv.csv`、`metrics.csv`、ROC 图、`segmentation_report.json`、可选的 mask PNG。
+
+## Docker
+
+镜像只装代码和依赖，数据集外挂：
+
+```bash
+# 构建
+docker build -t bme1307-part2 .
+
+# 运行（把本地数据集和输出目录挂进容器）
+docker run --rm \
+  -v "$(pwd)/Breast-ultrasound-samples/Ultrasound Samples":/data:ro \
+  -v "$(pwd)/outputs":/app/outputs \
+  bme1307-part2
+```
+
+`BUSAT_DATA_DIR` 环境变量可切换数据路径（容器内默认 `/data`）。
