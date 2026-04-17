@@ -33,6 +33,7 @@ __pycache__/
 output/
 results/
 data/
+Breast-ultrasound-samples/
 
 # Keep docs/pdf if needed
 !docs/*.pdf
