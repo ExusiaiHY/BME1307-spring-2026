@@ -168,3 +168,90 @@ docker run --rm \
 - **分割误差对分类的影响**（课程问答题 4）：对 `mask_cv` 做 dilate / erode（半径 1/3/5）和中心偏移（3/5/10 px）扰动，重新抽特征再 5-fold CV，报 AUC 下降曲线
 - Chan-Vese 或区域生长 refine 分割（看能否把 CV 路的 AUC 拉到 0.93+）
 - 等 BUSAT 到手后，用 MATLAB `autosegment` 的掩膜重跑同一批特征，做「BUSAT vs Python 分割」对照
+
+---
+
+## 2026-04-19 Update
+
+### 1. 课程约束重新确认
+
+- 重新看课程说明后，可以明确排除一个误区：**Part 2 并没有要求只能用经典 CV 分割**。
+- 课程只是说可以直接使用 BUSAT toolbox 的 `autosegment` 辅助分割；而 Part 1 甚至明确写了“使用课堂所学或自行查阅的任意图像分割技术”。
+- 所以合理的项目结构应该是：
+  1. 保留 `full` / `cv` baseline，方便做 ablation；
+  2. 直接接入更强的 classical 方法；
+  3. 等 BUSAT mask 出来后，做 `BUSAT vs refined vs baseline` 对照。
+
+### 2. BUSAT 状态更新
+
+- 现在 BUSAT 不再是“找不到工具箱文件”的状态；本机已经确认存在 `~/Documents/MATLAB/BUSAT/Segmentation/autosegment.m`。
+- 我读了 `autosegment.m`，它本质上是一个 **texture-driven automatic segmentation**：`log-Gabor filtering + lattice feature extraction + LDA classification + post-processing`。
+- 这意味着当前项目如果还停留在 Otsu baseline，会低估课程允许的方法空间，也低估 BUSAT 本身的复杂度。
+- 当前剩余问题变成了自动化集成：Codex 所在的 headless shell 里启动 MATLAB CLI 会触发本机 `Qt/neon` 报错，所以我先把 BUSAT 导出路径铺好，而不是继续把主线卡在 MATLAB 上。
+
+### 3. 分割升级：`refined`
+
+在 `src/busat_py/segmentation.py` 里新增了 `segment_refined()`：
+
+1. `medianBlur(5)` 去 speckle
+2. `CLAHE` 拉局部对比
+3. 取反得到 hypoechoic lesion 的亮响应
+4. 乘一个中心高斯先验，抑制远离 ROI 中心的低回声背景
+5. 通过阈值 + 形态学得到 seed
+6. 在 seed 周围裁一个 padded patch
+7. 用 `morphological Chan-Vese` 做边界细化
+8. 再做一次连通域筛选，留下“足够居中且面积合理”的病灶区域
+
+这个方法的目的不是追求 fancy，而是解决之前的真实问题：**紧裁剪 ROI 上病灶和周围低回声组织容易被一起吞进去**。
+
+### 4. Runner 升级
+
+`scripts/run_part2.py` 现在已经不再写死为 `full + cv` 两路，而是支持多策略：
+
+```bash
+python scripts/run_part2.py
+python scripts/run_part2.py --strategies refined --save-masks
+python scripts/run_part2.py --strategies busat --busat-masks-dir outputs/part2/busat_masks
+```
+
+- 默认策略：`full / cv / refined`
+- 新增输出：`features_refined.csv`
+- `segmentation_report.json` 现在按策略分别汇总
+
+同时新增了 `scripts/export_busat_masks.m`，供本机 MATLAB 会话批量导出：
+
+```matlab
+export_busat_masks
+```
+
+导出的 `outputs/part2/busat_masks/<image_id>_mask.png` 可以被 Python runner 直接读取并纳入统一评估。
+
+### 5. 新结果
+
+`refined` 路线已经完整复跑，120 张图 **0 fallback**，平均前景占比从旧 `cv` 的 **0.460** 降到 **0.243**，边界明显更收敛。
+
+最新 5-fold 结果如下：
+
+| mask | model | ACC | Sens | Spec | AUC |
+|---|---|---|---|---|---|
+| full    | logreg | 0.825 ± 0.049 | 0.869 | 0.797 | 0.893 ± 0.052 |
+| full    | svm    | 0.817 ± 0.042 | 0.824 | 0.810 | 0.915 ± 0.022 |
+| full    | rf     | 0.817 ± 0.057 | 0.718 | 0.878 | 0.880 ± 0.012 |
+| cv      | logreg | 0.825 ± 0.055 | 0.849 | 0.810 | 0.890 ± 0.082 |
+| cv      | svm    | 0.808 ± 0.062 | 0.782 | 0.825 | 0.854 ± 0.083 |
+| cv      | rf     | 0.817 ± 0.057 | 0.804 | 0.825 | 0.917 ± 0.063 |
+| refined | logreg | 0.825 ± 0.041 | 0.827 | 0.825 | 0.920 ± 0.050 |
+| refined | svm    | **0.858 ± 0.057** | 0.824 | 0.877 | **0.924 ± 0.050** |
+| refined | rf     | **0.875 ± 0.070** | 0.802 | 0.918 | 0.903 ± 0.054 |
+
+几个直接结论：
+
+- 如果以 **AUC** 作为主指标，目前最好的组合已经从 `cv + RF` 变成了 `refined + SVM`。
+- 如果以 **Accuracy** 作为主指标，`refined + RF` 也比旧 baseline 更高。
+- 这说明此前对经典 CV 的担忧是成立的，而且已经被更强的 classical segmentation 部分解决。
+
+### 6. 下一步
+
+- 在 MATLAB 会话里实际跑一次 `export_busat_masks`，补齐 BUSAT 掩膜。
+- 然后用同一套 feature / classifier / CV 流程做正式的 `BUSAT vs refined vs baseline` 对照。
+- 最后再接课程问答题 3 和 4：特征数量影响、分割误差影响。

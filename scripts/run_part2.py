@@ -1,11 +1,12 @@
-"""End-to-end runner for Part 2 baseline.
+"""End-to-end runner for Part 2.
 
-Data → segmentation (full vs classical CV) → features → 3 classifiers × 5-fold
-CV → metrics.csv + ROC plots + segmentation report.
+Data → segmentation strategies → features → 3 classifiers × 5-fold CV →
+metrics.csv + ROC plots + segmentation report.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -18,56 +19,95 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from busat_py.classify import make_models
-from busat_py.config import RunPaths
+from busat_py.config import BUSAT_MASKS_DIR, RunPaths
 from busat_py.data import basic_stats, iter_images, load_labels
 from busat_py.evaluate import cross_validate_model, plot_roc
 from busat_py.features import extract_all
-from busat_py.segmentation import SegmentMeta, segment_cv, segment_full
+from busat_py.segmentation import SEGMENTERS, SegmentMeta, summarize_mask
 
 
-def build_feature_tables(save_masks: bool, paths: RunPaths):
+DEFAULT_STRATEGIES = ("full", "cv", "refined")
+ALL_STRATEGIES = (*DEFAULT_STRATEGIES, "busat")
+
+
+def _load_busat_mask(image_id: int, image_shape: tuple[int, int], masks_dir: Path):
+    mask_path = masks_dir / f"{image_id}_mask.png"
+    mask_img = cv2.imread(str(mask_path), cv2.IMREAD_GRAYSCALE)
+    if mask_img is None:
+        raise FileNotFoundError(
+            f"BUSAT mask missing for image_id={image_id}: expected {mask_path}"
+        )
+    if tuple(mask_img.shape[:2]) != tuple(image_shape):
+        raise ValueError(
+            f"BUSAT mask shape mismatch for image_id={image_id}: "
+            f"mask={mask_img.shape[:2]} image={image_shape}"
+        )
+    mask = mask_img > 0
+    return mask, summarize_mask("busat", mask, extras={"source": str(mask_path.name)})
+
+
+def build_feature_tables(
+    save_masks: bool,
+    paths: RunPaths,
+    strategies: list[str],
+    busat_masks_dir: Path,
+):
     labels = load_labels()
     stats = basic_stats(labels)
     print(f"[data] loaded {stats['n']} samples ({stats['positive']}P / {stats['negative']}N)")
 
-    rows_full, rows_cv = [], []
-    meta_records = []
+    rows_by_strategy = {strategy: [] for strategy in strategies}
+    meta_by_strategy = {strategy: [] for strategy in strategies}
 
     for sample in iter_images(labels):
-        mask_full, _ = segment_full(sample.image_bgr)
-        mask_cv, meta_cv = segment_cv(sample.image_bgr)
-
         base = {"image_id": sample.image_id, "label": sample.label}
-        rows_full.append({**base, **extract_all(sample.image_bgr, mask_full)})
-        rows_cv.append({**base, **extract_all(sample.image_bgr, mask_cv)})
+        for strategy in strategies:
+            if strategy == "busat":
+                mask, meta = _load_busat_mask(
+                    image_id=sample.image_id,
+                    image_shape=sample.image_bgr.shape[:2],
+                    masks_dir=busat_masks_dir,
+                )
+            else:
+                mask, meta = SEGMENTERS[strategy](sample.image_bgr)
 
-        meta_records.append({
-            "image_id": sample.image_id,
-            "label": sample.label,
-            "strategy": meta_cv.strategy,
-            "fallback": meta_cv.fallback,
-            "foreground_ratio": meta_cv.foreground_ratio,
-            "centroid_offset": meta_cv.centroid_offset,
-            "extras": meta_cv.extras,
-        })
+            rows_by_strategy[strategy].append({**base, **extract_all(sample.image_bgr, mask)})
+            meta_by_strategy[strategy].append({
+                "image_id": sample.image_id,
+                "label": sample.label,
+                "strategy": meta.strategy,
+                "fallback": meta.fallback,
+                "foreground_ratio": meta.foreground_ratio,
+                "centroid_offset": meta.centroid_offset,
+                "extras": meta.extras,
+            })
 
-        if save_masks:
-            out = (mask_cv.astype(np.uint8) * 255)
-            cv2.imwrite(str(paths.masks / f"{sample.image_id}_mask.png"), out)
+            if save_masks:
+                out = (mask.astype(np.uint8) * 255)
+                cv2.imwrite(str(paths.masks / f"{sample.image_id}_{strategy}_mask.png"), out)
 
-    df_full = pd.DataFrame(rows_full)
-    df_cv = pd.DataFrame(rows_cv)
-    df_full.to_csv(paths.features_full, index=False)
-    df_cv.to_csv(paths.features_cv, index=False)
-    print(f"[features] wrote {paths.features_full.name} ({df_full.shape}) and "
-          f"{paths.features_cv.name} ({df_cv.shape})")
+    dfs = {}
+    for strategy, rows in rows_by_strategy.items():
+        df = pd.DataFrame(rows)
+        df.to_csv(paths.feature_table(strategy), index=False)
+        dfs[strategy] = df
+        print(f"[features] wrote {paths.feature_table(strategy).name} ({df.shape})")
 
-    report = _segmentation_report(meta_records)
+    report = {
+        "strategies": {
+            strategy: _segmentation_report(records)
+            for strategy, records in meta_by_strategy.items()
+        }
+    }
     paths.segmentation_report.write_text(json.dumps(report, indent=2))
-    print(f"[segmentation] fallback_count={report['fallback_count']} / {report['n']} "
-          f"mean_fg_ratio={report['mean_foreground_ratio']:.3f}")
+    for strategy, summary in report["strategies"].items():
+        print(
+            f"[segmentation] strategy={strategy:7s} "
+            f"fallback_count={summary['fallback_count']} / {summary['n']} "
+            f"mean_fg_ratio={summary['mean_foreground_ratio']:.3f}"
+        )
 
-    return df_full, df_cv
+    return dfs
 
 
 def _segmentation_report(meta_records):
@@ -110,15 +150,44 @@ def evaluate_table(df: pd.DataFrame, mask_name: str, paths: RunPaths):
     return summaries
 
 
-def main(save_masks: bool = False) -> None:
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--save-masks",
+        action="store_true",
+        help="Save binary masks for each requested strategy under outputs/part2/masks/.",
+    )
+    parser.add_argument(
+        "--strategies",
+        nargs="+",
+        default=list(DEFAULT_STRATEGIES),
+        choices=list(ALL_STRATEGIES),
+        help="Segmentation strategies to evaluate.",
+    )
+    parser.add_argument(
+        "--busat-masks-dir",
+        type=Path,
+        default=BUSAT_MASKS_DIR,
+        help="Directory containing pre-exported BUSAT mask PNG files named <image_id>_mask.png.",
+    )
+    return parser.parse_args(argv)
+
+
+def main(save_masks: bool = False, strategies: list[str] | None = None, busat_masks_dir: Path = BUSAT_MASKS_DIR) -> None:
     paths = RunPaths()
     paths.ensure()
+    strategies = strategies or list(DEFAULT_STRATEGIES)
 
-    df_full, df_cv = build_feature_tables(save_masks=save_masks, paths=paths)
+    dfs = build_feature_tables(
+        save_masks=save_masks,
+        paths=paths,
+        strategies=strategies,
+        busat_masks_dir=busat_masks_dir,
+    )
 
     rows = []
-    rows.extend(evaluate_table(df_full, mask_name="full", paths=paths))
-    rows.extend(evaluate_table(df_cv, mask_name="cv", paths=paths))
+    for strategy, df in dfs.items():
+        rows.extend(evaluate_table(df, mask_name=strategy, paths=paths))
 
     metrics_df = pd.DataFrame(rows)
     metrics_df.to_csv(paths.metrics, index=False)
@@ -126,5 +195,9 @@ def main(save_masks: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    save = "--save-masks" in sys.argv
-    main(save_masks=save)
+    args = parse_args(sys.argv[1:])
+    main(
+        save_masks=args.save_masks,
+        strategies=args.strategies,
+        busat_masks_dir=args.busat_masks_dir,
+    )

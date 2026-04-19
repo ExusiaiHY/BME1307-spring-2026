@@ -73,3 +73,61 @@
   2. `notebooks/part2.ipynb` 的完整渲染 —— markdown cell → 文本 block，code cell → Python code block，image/png output → 通过 `/v1/file_uploads` 上传后以 image block 嵌入，text/html DataFrame → Notion 原生 table（36 blocks）。
 - 实现小坑：macOS 系统 Python 的 LibreSSL 在 `api.notion.com/v1/file_uploads` 握手阶段会抛 `SSLEOFError`，`urllib` 和 `requests` 都受影响；解决办法是改用 `curl` 子进程做 `file_uploads` 创建和二进制上传，其余 JSON 调用仍走 `urllib`。
 - 后续要重复同步，可复用 `/tmp/push_notes_to_notion.py` 和 `/tmp/push_notebook_to_notion.py`（没提交进仓库，避免把 token 相关流程混进主线；要持久化的话可以搬到 `scripts/notion/` 下）。
+
+### 阶段状态总结（截至 2026-04-18）
+
+#### 现在进度如何
+
+- Part 2 已经不是空转状态，Python 侧 baseline 已经完整打通：数据对齐、分割、36 维特征提取、三种分类器、5 折交叉验证、指标汇总、ROC 图和结果文件都已经产出。
+- 当前仓库已经具备可复跑的代码骨架：`src/busat_py/`、`scripts/run_part2.py`、`notebooks/part2.ipynb`、`outputs/part2/` 和 Docker 打包文件都已就位。
+- 就课程要求覆盖度看，Part 2 的「特征提取 + 至少三种分类器 + 交叉验证 + ACC/Sens/Spec/AUC」主干已经有第一版结果；还缺的是 BUSAT 对照、特征数量影响实验、分割误差影响实验，以及 Docker 本地冒烟验证。
+
+#### 有什么进展
+
+- 数据已经核对清楚：120 张图像，标签分布为阴性 74 / 阳性 46。
+- 经典 CV 分割已经能稳定扫完整个数据集，`segmentation_report.json` 显示 120/120 无 fallback，平均前景占比约 0.460。
+- baseline 分类结果已经可用：`mask_cv + RandomForest` 的 AUC 达到 0.917 ± 0.063，`mask_full + SVM` 的 AUC 为 0.915 ± 0.022，整体 ACC 约 0.81–0.83，说明即使 BUSAT 还没到位，Python 侧已经能先把分类主线推进起来。
+- GitHub 和 Notion 都已经打通，当前阶段的代码、日志和 Part 2 笔记都已同步，后续增量记录成本明显降低。
+
+#### 最大的痛点在哪里
+
+- 最大痛点仍然是 `BUSAT toolbox` 缺失，而且这不是实现细节问题，而是外部依赖问题。课程说明默认 Part 2 可以直接调用 BUSAT 的 `autosegment`，但当前官方地址不可用，本机也找不到可执行的 `autosegment`。
+- 这个阻塞的影响不是“完全做不了”，而是“做出来的 Python baseline 还不能和课程指定工具链对齐”。也就是说，现阶段能先完成一个合理的替代 pipeline，但还缺少和 BUSAT 分割结果的对照，以及严格按原题描述复现实验的那一步。
+- 第二层痛点是现有经典 CV 分割虽然稳定，但对紧裁剪 ROI 的边界细化有限，病灶和周围低回声组织容易一起被吞进去，导致形状特征增益没有拉开。这会影响后面两道课程问答题，尤其是「分割误差对分类的影响」分析深度。
+
+## 2026-04-19
+
+### 今日进展
+
+- 重新核对课程说明后，明确了一点：Part 2 并没有要求“只能使用经典 CV 分割”。课程给的是 `BUSAT autosegment` 这条推荐路径，但方法上并不封死，保留 baseline 并引入更强分割是合理且更符合报告结构的做法。
+- 在本机发现并确认了 BUSAT toolbox 已安装在 `~/Documents/MATLAB/BUSAT`，`autosegment.m`、相关预处理和特征模块都已落地，说明“工具箱缺失”这个一级阻塞已经从资源问题变成了集成问题。
+- 阅读了 `autosegment.m` 的实现，确认 BUSAT 本身也不是简单阈值法，而是 `log-Gabor + texture lattice classification + post-processing` 的自动分割流程；因此把 Part 2 仅限缩为传统 Otsu baseline 并不符合课程和工具链的真实上限。
+- 在 Python 侧新增 `refined` 分割策略：`center-prior seed + morphological Chan-Vese`，目标就是解决紧裁剪 ROI 里病灶与周边低回声组织粘连的问题。
+- `scripts/run_part2.py` 已改成多策略 runner，默认同时评估 `full / cv / refined`，并支持在未来直接接入预导出的 `busat` mask。
+- 新增 `scripts/export_busat_masks.m`，用于在本机 MATLAB 中批量导出 `autosegment` 掩膜到 `outputs/part2/busat_masks/`，后续 Python runner 可以直接用这些 PNG 做 BUSAT 对照实验。
+
+### 结果更新
+
+- 新增输出：`outputs/part2/features_refined.csv`。
+- `segmentation_report.json` 现在按策略分别汇总；其中 `refined` 在 120/120 样本上无 fallback，平均前景占比约 `0.243`，明显小于旧 `cv` 的 `0.460`，说明边界更收敛。
+- 5 折交叉验证下，新的最佳结果来自 `refined + SVM`：
+  - Accuracy = `0.858 ± 0.057`
+  - Sensitivity = `0.824`
+  - Specificity = `0.877`
+  - AUC = `0.924 ± 0.050`
+- 如果看 Accuracy，`refined + RandomForest` 达到 `0.875 ± 0.070`，也优于旧 baseline。
+- 相比之下，旧 `cv + RF` 的 AUC 为 `0.917 ± 0.063`，`full + SVM` 为 `0.915 ± 0.022`。结论很明确：经典 Otsu 路线已经不是当前仓库里最优的 classical segmentation 方案。
+
+### 当前判断
+
+- 现在 Part 2 不应该再被表述为“只能靠经典 CV 顶着跑”。更准确的说法是：
+  1. baseline 已经保留；
+  2. 更强的 classical segmentation 已经接入并拿到了更好的分类结果；
+  3. BUSAT 工具箱本体已经到位，只差把 MATLAB 导出的掩膜接回 Python 流水线做正式对照。
+- 当前剩下的 BUSAT 问题也变得更具体：不是下载不到工具箱，而是 Codex 当前无界面 shell 环境里启动 MATLAB CLI 会报 `Qt/neon` 相关错误，所以 BUSAT 批量导出需要在本机 MATLAB 会话中执行 `scripts/export_busat_masks.m`。
+
+### 下一步
+
+- 在本机 MATLAB 中运行 `scripts/export_busat_masks.m`，把 `autosegment` 掩膜导出到 `outputs/part2/busat_masks/`。
+- 导出完成后，用 `python scripts/run_part2.py --strategies busat --busat-masks-dir outputs/part2/busat_masks` 复算一遍特征和分类指标，得到正式的 `BUSAT vs refined vs baseline` 对照表。
+- 在此基础上继续补课程问答题 3/4：特征数量影响、分割误差影响。
