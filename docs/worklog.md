@@ -131,3 +131,45 @@
 - 在本机 MATLAB 中运行 `scripts/export_busat_masks.m`，把 `autosegment` 掩膜导出到 `outputs/part2/busat_masks/`。
 - 导出完成后，用 `python scripts/run_part2.py --strategies busat --busat-masks-dir outputs/part2/busat_masks` 复算一遍特征和分类指标，得到正式的 `BUSAT vs refined vs baseline` 对照表。
 - 在此基础上继续补课程问答题 3/4：特征数量影响、分割误差影响。
+
+## 2026-04-19
+
+### 今日进展（Part 1 preparation）
+
+- Part 1 的真实采集还没开始，但已经把“采完后直接接数据”的代码接口搭好，不需要等到 4 月 21 日之后再从零开工。
+- 新增 `src/carotid_py/` 包，包含：
+  - `config.py`：Part 1 本地数据与输出路径约定。
+  - `data.py`：元数据 CSV 读取、图像路径解析、ROI 读取和中心搜索窗 fallback。
+  - `segmentation.py`：`B-mode` 暗腔体分割 baseline 和 `Color Doppler` 彩色流动区域分割 baseline。
+  - `quantify.py`：面积、等效直径、主/次轴、圆形度，以及与机器测量和文献范围对照的量化函数。
+- 新增 `scripts/run_part1.py`，输入是 `metadata.csv + images/`，输出是 `outputs/part1/measurements.csv`、`segmentation_report.json`、可选 mask 和 overlay PNG。
+- 新增 `docs/part1_metadata_template.csv` 和 `docs/part1_preparation.md`，把采集后需要填写的字段和推荐目录结构定下来了。
+- `README.md` 已补 Part 1 使用说明，采集后只要把真实图像放到 `part1_data/images/`、把模板填写为 `part1_data/metadata.csv`，就可以直接跑。
+
+### 接口设计要点
+
+- 元数据里只强制要求 3 列：`sample_id`、`file_name`、`modality`。
+- 为了满足课程里的物理量化，推荐补齐 `pixel_spacing_mm` 或 `pixel_spacing_x_mm / pixel_spacing_y_mm`。
+- 为了提高分割稳定性，支持在元数据里直接写 `roi_x0/roi_y0/roi_x1/roi_y1`；如果采集后还来不及手工框 ROI，runner 会先用中心搜索窗跑第一版结果。
+- 支持 `machine_diameter_mm`，后续可以直接和设备上手工测得的直径做误差对照。
+
+### 当前验证
+
+- 用两张本地合成图做了端到端 dry run：
+  - 一张模拟 `B-mode` 暗腔体；
+  - 一张模拟 `Color Doppler` 彩色流动区域。
+- `python scripts/run_part1.py --metadata /tmp/bme1307_part1_synth/metadata.csv --images-dir /tmp/bme1307_part1_synth/images --save-masks --save-overlays` 已成功跑通，说明 metadata -> 分割 -> 量化 -> 输出文件 这条链路是通的。
+- 这些合成结果只用于接口验证，不代表真实 Part 1 性能，也没有纳入仓库输出物。
+
+### 额外处理
+
+- `.gitignore` 已加入 `part1_data/` 和 `outputs/part1/`，避免 4 月 21 日之后的真实采集图像和对应输出误提交到 Git。
+
+### 下一步
+
+- 4 月 21 日采集完成后，先整理并填写 `part1_data/metadata.csv`。
+- 第一轮先直接跑现有 baseline，看：
+  1. 是否需要更严格的 ROI；
+  2. `B-mode` 和 `Color Doppler` 哪条路更稳；
+  3. 像素标定和机器直径记录是否完整。
+- 跑完第一批真实图后，再基于真实成像风格调整 Part 1 分割策略，而不是现在提前拍脑袋过拟合。

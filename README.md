@@ -39,6 +39,38 @@ pip install -r requirements.txt
 - **BUSAT toolbox**: [下载链接](https://www.tamps.cinvestav.mx/~wgomez/downloads.html)
 - **乳腺超声数据集**: [Breast-ultrasound-samples](https://github.com/Qian-IMMULab/Breast-ultrasound-samples)
 
+## Part 1 Pipeline
+
+Part 1 的真实采集数据还没入库，但可直接接数据的接口已经搭好：
+
+- 元数据模板：`docs/part1_metadata_template.csv`
+- 说明文档：`docs/part1_preparation.md`
+- 入口脚本：`scripts/run_part1.py`
+
+推荐的本地目录：
+
+```text
+part1_data/
+  metadata.csv
+  images/
+```
+
+采集后把真实图像放进 `part1_data/images/`，把模板复制并填写为
+`part1_data/metadata.csv`，然后运行：
+
+```bash
+python scripts/run_part1.py --metadata part1_data/metadata.csv --images-dir part1_data/images --save-masks --save-overlays
+```
+
+当前已实现：
+
+- `B-mode` 颈动脉暗腔体分割 baseline
+- `Color Doppler` 彩色流动区域分割 baseline
+- ROI 接口：优先使用元数据中的 `roi_x0/roi_y0/roi_x1/roi_y1`，缺失时自动退回中心搜索窗
+- 量化输出：面积、等效直径、主/次轴、圆形度，以及与机器测量直径和文献范围的对照
+
+输出位于 `outputs/part1/`：`measurements.csv`、`segmentation_report.json`、可选的 mask / overlay PNG。
+
 ## Part 2 Python 流水线
 
 课程说明并没有把 Part 2 限制为“只能用经典 CV 分割”。当前仓库保留三层路线：

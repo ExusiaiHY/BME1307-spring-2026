@@ -34,6 +34,8 @@ output/
 results/
 data/
 Breast-ultrasound-samples/
+part1_data/
+outputs/part1/
 
 # Keep docs/pdf if needed
 !docs/*.pdf

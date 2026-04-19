@@ -1,0 +1,1 @@
+sample_id,file_name,modality,subject_id,side,gain,dynamic_range,depth_mm,pixel_spacing_mm,pixel_spacing_x_mm,pixel_spacing_y_mm,roi_x0,roi_y0,roi_x1,roi_y1,machine_diameter_mm,notes
