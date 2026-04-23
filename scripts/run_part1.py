@@ -62,13 +62,29 @@ def main(args: argparse.Namespace) -> None:
     for sample in iter_samples(metadata):
         bbox = resolve_search_bbox(sample.metadata, sample.image_bgr.shape[:2], sample.modality)
         x0, y0, x1, y1, roi_source = bbox
-        crop = crop_to_bbox(sample.image_bgr, (x0, y0, x1, y1))
+        # When no manual ROI is provided, run the detector on the full image.
+        # An aggressive auto-crop to the central band hides the carotid in
+        # acquisitions where the vessel sits off-center.
+        if roi_source == "metadata_roi":
+            crop_bbox = (x0, y0, x1, y1)
+        else:
+            h_full, w_full = sample.image_bgr.shape[:2]
+            crop_bbox = (0, 0, w_full, h_full)
+            x0, y0, x1, y1 = crop_bbox
+        crop = crop_to_bbox(sample.image_bgr, crop_bbox)
 
-        mask_crop, seg_meta = segment_auto(crop, modality=sample.modality)
-        mask_full = place_mask(mask_crop, sample.image_bgr.shape[:2], (x0, y0, x1, y1))
+        pixel_spacing_mm = sample.metadata.get("pixel_spacing_mm")
+        if pixel_spacing_mm is not None and not np.isfinite(pixel_spacing_mm):
+            pixel_spacing_mm = None
+        mask_crop, seg_meta = segment_auto(
+            crop,
+            modality=sample.modality,
+            pixel_spacing_mm=pixel_spacing_mm,
+        )
+        mask_full = place_mask(mask_crop, sample.image_bgr.shape[:2], crop_bbox)
         overlay_full = overlay(sample.image_bgr, mask_full)
 
-        quant = quantify_mask(mask_crop, sample.metadata)
+        quant = quantify_mask(mask_full, sample.metadata)
         row = {
             "sample_id": sample.sample_id,
             "file_name": sample.path.name,

@@ -37,5 +37,8 @@ Breast-ultrasound-samples/
 part1_data/
 outputs/part1/
 
+# Third-party BUSAT MATLAB toolbox (external distribution, not part of this repo)
+US Toolbox Ver. 2.0/
+
 # Keep docs/pdf if needed
 !docs/*.pdf

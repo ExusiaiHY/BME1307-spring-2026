@@ -17,6 +17,23 @@ REQUIRED_COLUMNS = ("sample_id", "file_name", "modality")
 OPTIONAL_COLUMNS = (
     "subject_id",
     "side",
+    "gain_db",
+    "depth_cm",
+    "range_db",
+    "frequency",
+    "frequency_mhz",
+    "image_enhancement",
+    "gray_map",
+    "frame_correlation",
+    "puncture_guidance",
+    "color_map",
+    "flow_gain",
+    "prf",
+    "angle_degree",
+    "frame_rate",
+    "b_suppression",
+    "wall_filter",
+    "post_processing",
     "gain",
     "dynamic_range",
     "depth_mm",
@@ -31,6 +48,18 @@ OPTIONAL_COLUMNS = (
     "notes",
 )
 NUMERIC_COLUMNS = (
+    "gain_db",
+    "depth_cm",
+    "range_db",
+    "frequency",
+    "frequency_mhz",
+    "flow_gain",
+    "prf",
+    "angle_degree",
+    "frame_rate",
+    "b_suppression",
+    "wall_filter",
+    "post_processing",
     "gain",
     "dynamic_range",
     "depth_mm",
@@ -84,6 +113,29 @@ def _coerce_numeric(df: pd.DataFrame, columns: tuple[str, ...]) -> pd.DataFrame:
     return df
 
 
+def _apply_alias_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Keep the legacy metadata keys populated while accepting newer labels."""
+    df = df.copy()
+
+    alias_pairs = (
+        ("gain_db", "gain"),
+        ("range_db", "dynamic_range"),
+        ("frequency_mhz", "frequency"),
+    )
+    for preferred, legacy in alias_pairs:
+        if preferred in df.columns and legacy not in df.columns:
+            df[legacy] = df[preferred]
+        if legacy in df.columns and preferred not in df.columns:
+            df[preferred] = df[legacy]
+
+    if "depth_cm" in df.columns and "depth_mm" not in df.columns:
+        df["depth_mm"] = df["depth_cm"] * 10.0
+    if "depth_mm" in df.columns and "depth_cm" not in df.columns:
+        df["depth_cm"] = df["depth_mm"] / 10.0
+
+    return df
+
+
 def load_metadata(
     metadata_file: Path = PART1_METADATA_FILE,
     images_dir: Path = PART1_IMAGES_DIR,
@@ -106,6 +158,7 @@ def load_metadata(
         )
 
     df = _coerce_numeric(df, NUMERIC_COLUMNS)
+    df = _apply_alias_columns(df)
     df["sample_id"] = df["sample_id"].astype(str).str.strip()
     df["file_name"] = df["file_name"].astype(str).str.strip()
     df["modality"] = df["modality"].map(_normalize_modality)
@@ -124,17 +177,50 @@ def load_metadata(
     return df.reset_index(drop=True)
 
 
+def _fill_pixel_spacing_from_depth(meta: dict, image_shape: tuple[int, int]) -> dict:
+    """Derive isotropic pixel spacing from acquisition depth when missing.
+
+    The exported JPEG spans the full imaging depth vertically, so
+    ``pixel_spacing_y_mm ≈ depth_mm / image_height``. Lateral scaling on
+    linear transducers is close enough to isotropic for first-pass metrics
+    (any per-scanner lateral offset can be filled in later).
+    """
+    meta = dict(meta)
+    sx = meta.get("pixel_spacing_x_mm")
+    sy = meta.get("pixel_spacing_y_mm")
+    s = meta.get("pixel_spacing_mm")
+    has_x = sx is not None and pd.notna(sx)
+    has_y = sy is not None and pd.notna(sy)
+    has_s = s is not None and pd.notna(s)
+    if has_x or has_y or has_s:
+        return meta
+
+    depth_mm = meta.get("depth_mm")
+    if depth_mm is None or not pd.notna(depth_mm):
+        return meta
+    height = int(image_shape[0])
+    if height <= 0:
+        return meta
+    spacing = float(depth_mm) / float(height)
+    meta["pixel_spacing_mm"] = spacing
+    meta["pixel_spacing_x_mm"] = spacing
+    meta["pixel_spacing_y_mm"] = spacing
+    meta["pixel_spacing_source"] = "auto_from_depth"
+    return meta
+
+
 def iter_samples(metadata: pd.DataFrame) -> Iterator[Sample]:
     for row in metadata.to_dict(orient="records"):
         img = cv2.imread(str(row["path"]), cv2.IMREAD_COLOR)
         if img is None:
             raise IOError(f"failed to read {row['path']}")
+        meta = _fill_pixel_spacing_from_depth(row, img.shape[:2])
         yield Sample(
             sample_id=str(row["sample_id"]),
             modality=str(row["modality"]),
             path=Path(row["path"]),
             image_bgr=img,
-            metadata=row,
+            metadata=meta,
         )
 
 

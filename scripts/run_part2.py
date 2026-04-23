@@ -37,13 +37,23 @@ def _load_busat_mask(image_id: int, image_shape: tuple[int, int], masks_dir: Pat
         raise FileNotFoundError(
             f"BUSAT mask missing for image_id={image_id}: expected {mask_path}"
         )
-    if tuple(mask_img.shape[:2]) != tuple(image_shape):
+    mh, mw = mask_img.shape[:2]
+    ih, iw = image_shape
+    # BUSAT's autosegment crops the image to a multiple of its lattice window
+    # (16 px) before segmenting, so the returned mask is up to 15 px shorter in
+    # each axis. Pad the top-left-aligned mask back to the original shape.
+    if mh > ih or mw > iw:
         raise ValueError(
-            f"BUSAT mask shape mismatch for image_id={image_id}: "
+            f"BUSAT mask larger than image for id={image_id}: "
             f"mask={mask_img.shape[:2]} image={image_shape}"
         )
-    mask = mask_img > 0
-    return mask, summarize_mask("busat", mask, extras={"source": str(mask_path.name)})
+    padded = np.zeros((ih, iw), dtype=bool)
+    padded[:mh, :mw] = mask_img > 0
+    return padded, summarize_mask("busat", padded, extras={
+        "source": mask_path.name,
+        "mask_shape": [int(mh), int(mw)],
+        "image_shape": [int(ih), int(iw)],
+    })
 
 
 def build_feature_tables(

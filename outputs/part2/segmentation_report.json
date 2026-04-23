@@ -4592,6 +4592,2297 @@
           }
         }
       ]
+    },
+    "busat": {
+      "n": 120,
+      "fallback_count": 0,
+      "mean_foreground_ratio": 0.2510412064672925,
+      "median_foreground_ratio": 0.2462470704777155,
+      "min_foreground_ratio": 0.09260299625468164,
+      "max_foreground_ratio": 0.4870517430826091,
+      "mean_centroid_offset": 0.04472304623614377,
+      "per_image": [
+        {
+          "image_id": 2,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2182790471560525,
+          "centroid_offset": 0.0052117474411006075,
+          "extras": {
+            "source": "2_mask.png",
+            "mask_shape": [
+              97,
+              177
+            ],
+            "image_shape": [
+              110,
+              187
+            ]
+          }
+        },
+        {
+          "image_id": 3,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3063847788257237,
+          "centroid_offset": 0.07895848811297422,
+          "extras": {
+            "source": "3_mask.png",
+            "mask_shape": [
+              273,
+              369
+            ],
+            "image_shape": [
+              273,
+              381
+            ]
+          }
+        },
+        {
+          "image_id": 4,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.22090777402221148,
+          "centroid_offset": 0.04203545121872507,
+          "extras": {
+            "source": "4_mask.png",
+            "mask_shape": [
+              97,
+              177
+            ],
+            "image_shape": [
+              109,
+              190
+            ]
+          }
+        },
+        {
+          "image_id": 5,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.15847665847665848,
+          "centroid_offset": 0.05425815844513717,
+          "extras": {
+            "source": "5_mask.png",
+            "mask_shape": [
+              81,
+              145
+            ],
+            "image_shape": [
+              88,
+              148
+            ]
+          }
+        },
+        {
+          "image_id": 6,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.35447074696430764,
+          "centroid_offset": 0.07166515724296972,
+          "extras": {
+            "source": "6_mask.png",
+            "mask_shape": [
+              145,
+              257
+            ],
+            "image_shape": [
+              155,
+              263
+            ]
+          }
+        },
+        {
+          "image_id": 7,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.32512120870447625,
+          "centroid_offset": 0.053051890279952774,
+          "extras": {
+            "source": "7_mask.png",
+            "mask_shape": [
+              177,
+              193
+            ],
+            "image_shape": [
+              181,
+              196
+            ]
+          }
+        },
+        {
+          "image_id": 8,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.37421671647546517,
+          "centroid_offset": 0.015991354677099345,
+          "extras": {
+            "source": "8_mask.png",
+            "mask_shape": [
+              241,
+              321
+            ],
+            "image_shape": [
+              253,
+              328
+            ]
+          }
+        },
+        {
+          "image_id": 9,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.20448481116584566,
+          "centroid_offset": 0.02463247162084017,
+          "extras": {
+            "source": "9_mask.png",
+            "mask_shape": [
+              97,
+              161
+            ],
+            "image_shape": [
+              112,
+              174
+            ]
+          }
+        },
+        {
+          "image_id": 10,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.4383783783783784,
+          "centroid_offset": 0.010358026146773574,
+          "extras": {
+            "source": "10_mask.png",
+            "mask_shape": [
+              145,
+              321
+            ],
+            "image_shape": [
+              150,
+              333
+            ]
+          }
+        },
+        {
+          "image_id": 11,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.13907140681432487,
+          "centroid_offset": 0.11004853893185577,
+          "extras": {
+            "source": "11_mask.png",
+            "mask_shape": [
+              257,
+              337
+            ],
+            "image_shape": [
+              268,
+              343
+            ]
+          }
+        },
+        {
+          "image_id": 12,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.16690929451287795,
+          "centroid_offset": 0.02905614318847648,
+          "extras": {
+            "source": "12_mask.png",
+            "mask_shape": [
+              81,
+              177
+            ],
+            "image_shape": [
+              95,
+              188
+            ]
+          }
+        },
+        {
+          "image_id": 13,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.408964516714018,
+          "centroid_offset": 0.026910516178184254,
+          "extras": {
+            "source": "13_mask.png",
+            "mask_shape": [
+              225,
+              273
+            ],
+            "image_shape": [
+              233,
+              284
+            ]
+          }
+        },
+        {
+          "image_id": 14,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2629014396456257,
+          "centroid_offset": 0.0880091118496319,
+          "extras": {
+            "source": "14_mask.png",
+            "mask_shape": [
+              273,
+              289
+            ],
+            "image_shape": [
+              285,
+              301
+            ]
+          }
+        },
+        {
+          "image_id": 15,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.1519708608316203,
+          "centroid_offset": 0.0970076921290491,
+          "extras": {
+            "source": "15_mask.png",
+            "mask_shape": [
+              113,
+              225
+            ],
+            "image_shape": [
+              117,
+              237
+            ]
+          }
+        },
+        {
+          "image_id": 16,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.4870517430826091,
+          "centroid_offset": 0.06730446498784137,
+          "extras": {
+            "source": "16_mask.png",
+            "mask_shape": [
+              209,
+              369
+            ],
+            "image_shape": [
+              213,
+              376
+            ]
+          }
+        },
+        {
+          "image_id": 17,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.26644053423786307,
+          "centroid_offset": 0.03444337554997092,
+          "extras": {
+            "source": "17_mask.png",
+            "mask_shape": [
+              177,
+              257
+            ],
+            "image_shape": [
+              178,
+              265
+            ]
+          }
+        },
+        {
+          "image_id": 18,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3625914315569488,
+          "centroid_offset": 0.054393009199187194,
+          "extras": {
+            "source": "18_mask.png",
+            "mask_shape": [
+              209,
+              257
+            ],
+            "image_shape": [
+              209,
+              261
+            ]
+          }
+        },
+        {
+          "image_id": 19,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.4386523130225734,
+          "centroid_offset": 0.046599840651087125,
+          "extras": {
+            "source": "19_mask.png",
+            "mask_shape": [
+              161,
+              321
+            ],
+            "image_shape": [
+              173,
+              327
+            ]
+          }
+        },
+        {
+          "image_id": 20,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3605574371217589,
+          "centroid_offset": 0.04224439724949652,
+          "extras": {
+            "source": "20_mask.png",
+            "mask_shape": [
+              161,
+              209
+            ],
+            "image_shape": [
+              166,
+              217
+            ]
+          }
+        },
+        {
+          "image_id": 21,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2015907622739018,
+          "centroid_offset": 0.0408005525303245,
+          "extras": {
+            "source": "21_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              144,
+              172
+            ]
+          }
+        },
+        {
+          "image_id": 22,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.16359537897999438,
+          "centroid_offset": 0.032916733696780866,
+          "extras": {
+            "source": "22_mask.png",
+            "mask_shape": [
+              97,
+              161
+            ],
+            "image_shape": [
+              105,
+              169
+            ]
+          }
+        },
+        {
+          "image_id": 23,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3811888472007651,
+          "centroid_offset": 0.06813118431484282,
+          "extras": {
+            "source": "23_mask.png",
+            "mask_shape": [
+              129,
+              193
+            ],
+            "image_shape": [
+              138,
+              197
+            ]
+          }
+        },
+        {
+          "image_id": 24,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.36521279407877344,
+          "centroid_offset": 0.1113200833632949,
+          "extras": {
+            "source": "24_mask.png",
+            "mask_shape": [
+              97,
+              193
+            ],
+            "image_shape": [
+              97,
+              195
+            ]
+          }
+        },
+        {
+          "image_id": 25,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.18850574712643678,
+          "centroid_offset": 0.06675640658378185,
+          "extras": {
+            "source": "25_mask.png",
+            "mask_shape": [
+              81,
+              145
+            ],
+            "image_shape": [
+              87,
+              160
+            ]
+          }
+        },
+        {
+          "image_id": 26,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.12942513065212452,
+          "centroid_offset": 0.055707346904925896,
+          "extras": {
+            "source": "26_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              135,
+              163
+            ]
+          }
+        },
+        {
+          "image_id": 27,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2654257546343877,
+          "centroid_offset": 0.07194609184012202,
+          "extras": {
+            "source": "27_mask.png",
+            "mask_shape": [
+              177,
+              273
+            ],
+            "image_shape": [
+              189,
+              278
+            ]
+          }
+        },
+        {
+          "image_id": 28,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.27064959696538643,
+          "centroid_offset": 0.06669677313311996,
+          "extras": {
+            "source": "28_mask.png",
+            "mask_shape": [
+              177,
+              209
+            ],
+            "image_shape": [
+              190,
+              222
+            ]
+          }
+        },
+        {
+          "image_id": 29,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2259552042160738,
+          "centroid_offset": 0.01318296470027054,
+          "extras": {
+            "source": "29_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              138,
+              176
+            ]
+          }
+        },
+        {
+          "image_id": 30,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2455995599559956,
+          "centroid_offset": 0.06427699350270723,
+          "extras": {
+            "source": "30_mask.png",
+            "mask_shape": [
+              161,
+              193
+            ],
+            "image_shape": [
+              162,
+              202
+            ]
+          }
+        },
+        {
+          "image_id": 31,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.13773873185637892,
+          "centroid_offset": 0.04574563591165988,
+          "extras": {
+            "source": "31_mask.png",
+            "mask_shape": [
+              65,
+              161
+            ],
+            "image_shape": [
+              77,
+              170
+            ]
+          }
+        },
+        {
+          "image_id": 32,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2858562202824498,
+          "centroid_offset": 0.06177040924778976,
+          "extras": {
+            "source": "32_mask.png",
+            "mask_shape": [
+              145,
+              177
+            ],
+            "image_shape": [
+              154,
+              183
+            ]
+          }
+        },
+        {
+          "image_id": 33,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2501534545998952,
+          "centroid_offset": 0.013151812504223677,
+          "extras": {
+            "source": "33_mask.png",
+            "mask_shape": [
+              209,
+              305
+            ],
+            "image_shape": [
+              219,
+              305
+            ]
+          }
+        },
+        {
+          "image_id": 34,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2690015889830508,
+          "centroid_offset": 0.017702475382433296,
+          "extras": {
+            "source": "34_mask.png",
+            "mask_shape": [
+              177,
+              225
+            ],
+            "image_shape": [
+              192,
+              236
+            ]
+          }
+        },
+        {
+          "image_id": 35,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.25403165596535765,
+          "centroid_offset": 0.01419606133695461,
+          "extras": {
+            "source": "35_mask.png",
+            "mask_shape": [
+              145,
+              177
+            ],
+            "image_shape": [
+              148,
+              181
+            ]
+          }
+        },
+        {
+          "image_id": 36,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.14495287321374278,
+          "centroid_offset": 0.06377396168278705,
+          "extras": {
+            "source": "36_mask.png",
+            "mask_shape": [
+              81,
+              129
+            ],
+            "image_shape": [
+              92,
+              143
+            ]
+          }
+        },
+        {
+          "image_id": 37,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.30329867796175075,
+          "centroid_offset": 0.050322849849438696,
+          "extras": {
+            "source": "37_mask.png",
+            "mask_shape": [
+              145,
+              209
+            ],
+            "image_shape": [
+              147,
+              212
+            ]
+          }
+        },
+        {
+          "image_id": 38,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3526486289181914,
+          "centroid_offset": 0.04115569897177333,
+          "extras": {
+            "source": "38_mask.png",
+            "mask_shape": [
+              209,
+              289
+            ],
+            "image_shape": [
+              217,
+              303
+            ]
+          }
+        },
+        {
+          "image_id": 39,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.13061063430995362,
+          "centroid_offset": 0.06705852362575128,
+          "extras": {
+            "source": "39_mask.png",
+            "mask_shape": [
+              81,
+              97
+            ],
+            "image_shape": [
+              93,
+              109
+            ]
+          }
+        },
+        {
+          "image_id": 40,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2796672375825789,
+          "centroid_offset": 0.03385279538636207,
+          "extras": {
+            "source": "40_mask.png",
+            "mask_shape": [
+              129,
+              177
+            ],
+            "image_shape": [
+              134,
+              183
+            ]
+          }
+        },
+        {
+          "image_id": 41,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.43141042012514363,
+          "centroid_offset": 0.055415932993953976,
+          "extras": {
+            "source": "41_mask.png",
+            "mask_shape": [
+              177,
+              321
+            ],
+            "image_shape": [
+              191,
+              328
+            ]
+          }
+        },
+        {
+          "image_id": 42,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2166785459729152,
+          "centroid_offset": 0.03390726903407998,
+          "extras": {
+            "source": "42_mask.png",
+            "mask_shape": [
+              225,
+              241
+            ],
+            "image_shape": [
+              230,
+              244
+            ]
+          }
+        },
+        {
+          "image_id": 43,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.18815250429496497,
+          "centroid_offset": 0.018708079599268793,
+          "extras": {
+            "source": "43_mask.png",
+            "mask_shape": [
+              81,
+              321
+            ],
+            "image_shape": [
+              92,
+              329
+            ]
+          }
+        },
+        {
+          "image_id": 44,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3070446392985253,
+          "centroid_offset": 0.07795410049432253,
+          "extras": {
+            "source": "44_mask.png",
+            "mask_shape": [
+              97,
+              193
+            ],
+            "image_shape": [
+              104,
+              193
+            ]
+          }
+        },
+        {
+          "image_id": 45,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.299895965204748,
+          "centroid_offset": 0.07041928089186027,
+          "extras": {
+            "source": "45_mask.png",
+            "mask_shape": [
+              209,
+              353
+            ],
+            "image_shape": [
+              221,
+              361
+            ]
+          }
+        },
+        {
+          "image_id": 46,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.24776193455141618,
+          "centroid_offset": 0.036223105260605945,
+          "extras": {
+            "source": "46_mask.png",
+            "mask_shape": [
+              305,
+              289
+            ],
+            "image_shape": [
+              307,
+              302
+            ]
+          }
+        },
+        {
+          "image_id": 47,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2979774380882451,
+          "centroid_offset": 0.012919594038473838,
+          "extras": {
+            "source": "47_mask.png",
+            "mask_shape": [
+              209,
+              209
+            ],
+            "image_shape": [
+              211,
+              213
+            ]
+          }
+        },
+        {
+          "image_id": 48,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.24128584935392372,
+          "centroid_offset": 0.04685364531659655,
+          "extras": {
+            "source": "48_mask.png",
+            "mask_shape": [
+              81,
+              161
+            ],
+            "image_shape": [
+              95,
+              167
+            ]
+          }
+        },
+        {
+          "image_id": 49,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.16579018338727078,
+          "centroid_offset": 0.05031977578935037,
+          "extras": {
+            "source": "49_mask.png",
+            "mask_shape": [
+              97,
+              129
+            ],
+            "image_shape": [
+              103,
+              144
+            ]
+          }
+        },
+        {
+          "image_id": 50,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.15414998946703182,
+          "centroid_offset": 0.02611978743524465,
+          "extras": {
+            "source": "50_mask.png",
+            "mask_shape": [
+              97,
+              177
+            ],
+            "image_shape": [
+              101,
+              188
+            ]
+          }
+        },
+        {
+          "image_id": 51,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2793783830976078,
+          "centroid_offset": 0.04463436488816613,
+          "extras": {
+            "source": "51_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              138,
+              166
+            ]
+          }
+        },
+        {
+          "image_id": 52,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.17352624890018575,
+          "centroid_offset": 0.052793646804359065,
+          "extras": {
+            "source": "52_mask.png",
+            "mask_shape": [
+              97,
+              193
+            ],
+            "image_shape": [
+              106,
+              193
+            ]
+          }
+        },
+        {
+          "image_id": 53,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.25392953929539297,
+          "centroid_offset": 0.0339290078501983,
+          "extras": {
+            "source": "53_mask.png",
+            "mask_shape": [
+              129,
+              241
+            ],
+            "image_shape": [
+              135,
+              246
+            ]
+          }
+        },
+        {
+          "image_id": 54,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.21243697478991597,
+          "centroid_offset": 0.02334198842886888,
+          "extras": {
+            "source": "54_mask.png",
+            "mask_shape": [
+              161,
+              161
+            ],
+            "image_shape": [
+              170,
+              175
+            ]
+          }
+        },
+        {
+          "image_id": 55,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.342920054200542,
+          "centroid_offset": 0.11006039694967673,
+          "extras": {
+            "source": "55_mask.png",
+            "mask_shape": [
+              225,
+              241
+            ],
+            "image_shape": [
+              240,
+              246
+            ]
+          }
+        },
+        {
+          "image_id": 56,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.1695970695970696,
+          "centroid_offset": 0.07057082771352344,
+          "extras": {
+            "source": "56_mask.png",
+            "mask_shape": [
+              321,
+              321
+            ],
+            "image_shape": [
+              325,
+              336
+            ]
+          }
+        },
+        {
+          "image_id": 57,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2266182698124622,
+          "centroid_offset": 0.03071873504642156,
+          "extras": {
+            "source": "57_mask.png",
+            "mask_shape": [
+              81,
+              177
+            ],
+            "image_shape": [
+              87,
+              190
+            ]
+          }
+        },
+        {
+          "image_id": 58,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.22875631313131314,
+          "centroid_offset": 0.0064166722403720565,
+          "extras": {
+            "source": "58_mask.png",
+            "mask_shape": [
+              193,
+              305
+            ],
+            "image_shape": [
+              198,
+              320
+            ]
+          }
+        },
+        {
+          "image_id": 59,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.18902598128750886,
+          "centroid_offset": 0.0662641578086026,
+          "extras": {
+            "source": "59_mask.png",
+            "mask_shape": [
+              129,
+              193
+            ],
+            "image_shape": [
+              139,
+              193
+            ]
+          }
+        },
+        {
+          "image_id": 60,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.31734332884097033,
+          "centroid_offset": 0.05559869260310956,
+          "extras": {
+            "source": "60_mask.png",
+            "mask_shape": [
+              209,
+              305
+            ],
+            "image_shape": [
+              224,
+              318
+            ]
+          }
+        },
+        {
+          "image_id": 61,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.10160864647480206,
+          "centroid_offset": 0.017224958606019088,
+          "extras": {
+            "source": "61_mask.png",
+            "mask_shape": [
+              97,
+              145
+            ],
+            "image_shape": [
+              109,
+              146
+            ]
+          }
+        },
+        {
+          "image_id": 62,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3218882309088096,
+          "centroid_offset": 0.03948770413808206,
+          "extras": {
+            "source": "62_mask.png",
+            "mask_shape": [
+              241,
+              273
+            ],
+            "image_shape": [
+              253,
+              281
+            ]
+          }
+        },
+        {
+          "image_id": 63,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2517621267621268,
+          "centroid_offset": 0.07331981553439197,
+          "extras": {
+            "source": "63_mask.png",
+            "mask_shape": [
+              273,
+              497
+            ],
+            "image_shape": [
+              286,
+              504
+            ]
+          }
+        },
+        {
+          "image_id": 64,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.16522644456012495,
+          "centroid_offset": 0.04661536155522483,
+          "extras": {
+            "source": "64_mask.png",
+            "mask_shape": [
+              113,
+              161
+            ],
+            "image_shape": [
+              113,
+              170
+            ]
+          }
+        },
+        {
+          "image_id": 65,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3684103260869565,
+          "centroid_offset": 0.039351401937655496,
+          "extras": {
+            "source": "65_mask.png",
+            "mask_shape": [
+              129,
+              305
+            ],
+            "image_shape": [
+              138,
+              320
+            ]
+          }
+        },
+        {
+          "image_id": 66,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2042799738342211,
+          "centroid_offset": 0.0914930487005789,
+          "extras": {
+            "source": "66_mask.png",
+            "mask_shape": [
+              113,
+              161
+            ],
+            "image_shape": [
+              123,
+              174
+            ]
+          }
+        },
+        {
+          "image_id": 67,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.24482471776589423,
+          "centroid_offset": 0.07866244788067724,
+          "extras": {
+            "source": "67_mask.png",
+            "mask_shape": [
+              161,
+              241
+            ],
+            "image_shape": [
+              165,
+              255
+            ]
+          }
+        },
+        {
+          "image_id": 68,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.22196368879858425,
+          "centroid_offset": 0.034451912687747485,
+          "extras": {
+            "source": "68_mask.png",
+            "mask_shape": [
+              145,
+              209
+            ],
+            "image_shape": [
+              146,
+              209
+            ]
+          }
+        },
+        {
+          "image_id": 69,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.30506575145773873,
+          "centroid_offset": 0.03430107040912659,
+          "extras": {
+            "source": "69_mask.png",
+            "mask_shape": [
+              177,
+              289
+            ],
+            "image_shape": [
+              191,
+              299
+            ]
+          }
+        },
+        {
+          "image_id": 70,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2287898564236435,
+          "centroid_offset": 0.0368019202373993,
+          "extras": {
+            "source": "70_mask.png",
+            "mask_shape": [
+              113,
+              161
+            ],
+            "image_shape": [
+              124,
+              173
+            ]
+          }
+        },
+        {
+          "image_id": 71,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.13383719099354432,
+          "centroid_offset": 0.018182267401028546,
+          "extras": {
+            "source": "71_mask.png",
+            "mask_shape": [
+              81,
+              145
+            ],
+            "image_shape": [
+              87,
+              146
+            ]
+          }
+        },
+        {
+          "image_id": 72,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.27757200681388405,
+          "centroid_offset": 0.0033507298658976,
+          "extras": {
+            "source": "72_mask.png",
+            "mask_shape": [
+              225,
+              273
+            ],
+            "image_shape": [
+              231,
+              277
+            ]
+          }
+        },
+        {
+          "image_id": 73,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.15455396132252028,
+          "centroid_offset": 0.03549466519176067,
+          "extras": {
+            "source": "73_mask.png",
+            "mask_shape": [
+              129,
+              225
+            ],
+            "image_shape": [
+              140,
+              229
+            ]
+          }
+        },
+        {
+          "image_id": 74,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.211125,
+          "centroid_offset": 0.03598079678848178,
+          "extras": {
+            "source": "74_mask.png",
+            "mask_shape": [
+              113,
+              241
+            ],
+            "image_shape": [
+              125,
+              256
+            ]
+          }
+        },
+        {
+          "image_id": 75,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.15450070323488044,
+          "centroid_offset": 0.021316305556289383,
+          "extras": {
+            "source": "75_mask.png",
+            "mask_shape": [
+              81,
+              145
+            ],
+            "image_shape": [
+              90,
+              158
+            ]
+          }
+        },
+        {
+          "image_id": 76,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3390807478321889,
+          "centroid_offset": 0.01910318033790091,
+          "extras": {
+            "source": "76_mask.png",
+            "mask_shape": [
+              209,
+              273
+            ],
+            "image_shape": [
+              213,
+              281
+            ]
+          }
+        },
+        {
+          "image_id": 77,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.31748385047124855,
+          "centroid_offset": 0.05148157689653199,
+          "extras": {
+            "source": "77_mask.png",
+            "mask_shape": [
+              209,
+              257
+            ],
+            "image_shape": [
+              213,
+              266
+            ]
+          }
+        },
+        {
+          "image_id": 78,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3338774341351661,
+          "centroid_offset": 0.02759831413482188,
+          "extras": {
+            "source": "78_mask.png",
+            "mask_shape": [
+              177,
+              193
+            ],
+            "image_shape": [
+              180,
+              194
+            ]
+          }
+        },
+        {
+          "image_id": 79,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.1744368779465689,
+          "centroid_offset": 0.021234196538077486,
+          "extras": {
+            "source": "79_mask.png",
+            "mask_shape": [
+              81,
+              113
+            ],
+            "image_shape": [
+              83,
+              115
+            ]
+          }
+        },
+        {
+          "image_id": 80,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.34895124391163884,
+          "centroid_offset": 0.04984280418695521,
+          "extras": {
+            "source": "80_mask.png",
+            "mask_shape": [
+              209,
+              273
+            ],
+            "image_shape": [
+              217,
+              281
+            ]
+          }
+        },
+        {
+          "image_id": 81,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.38423028785982477,
+          "centroid_offset": 0.04973265619279867,
+          "extras": {
+            "source": "81_mask.png",
+            "mask_shape": [
+              225,
+              321
+            ],
+            "image_shape": [
+              235,
+              323
+            ]
+          }
+        },
+        {
+          "image_id": 82,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2830468512321266,
+          "centroid_offset": 0.02100379548447686,
+          "extras": {
+            "source": "82_mask.png",
+            "mask_shape": [
+              161,
+              289
+            ],
+            "image_shape": [
+              173,
+              304
+            ]
+          }
+        },
+        {
+          "image_id": 83,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.17598546267822196,
+          "centroid_offset": 0.03905489218106565,
+          "extras": {
+            "source": "83_mask.png",
+            "mask_shape": [
+              97,
+              145
+            ],
+            "image_shape": [
+              98,
+              146
+            ]
+          }
+        },
+        {
+          "image_id": 84,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3561811505507956,
+          "centroid_offset": 0.06282584261300325,
+          "extras": {
+            "source": "84_mask.png",
+            "mask_shape": [
+              225,
+              289
+            ],
+            "image_shape": [
+              228,
+              301
+            ]
+          }
+        },
+        {
+          "image_id": 85,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.34374511642444133,
+          "centroid_offset": 0.07608172118701943,
+          "extras": {
+            "source": "85_mask.png",
+            "mask_shape": [
+              209,
+              225
+            ],
+            "image_shape": [
+              216,
+              237
+            ]
+          }
+        },
+        {
+          "image_id": 86,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2479590701812924,
+          "centroid_offset": 0.032678824638828555,
+          "extras": {
+            "source": "86_mask.png",
+            "mask_shape": [
+              177,
+              241
+            ],
+            "image_shape": [
+              185,
+              243
+            ]
+          }
+        },
+        {
+          "image_id": 87,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.14591049382716048,
+          "centroid_offset": 0.05167054790838885,
+          "extras": {
+            "source": "87_mask.png",
+            "mask_shape": [
+              129,
+              177
+            ],
+            "image_shape": [
+              144,
+              180
+            ]
+          }
+        },
+        {
+          "image_id": 88,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3131808866357459,
+          "centroid_offset": 0.010131135710165324,
+          "extras": {
+            "source": "88_mask.png",
+            "mask_shape": [
+              145,
+              241
+            ],
+            "image_shape": [
+              146,
+              254
+            ]
+          }
+        },
+        {
+          "image_id": 89,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.21956441187368766,
+          "centroid_offset": 0.07243078761462123,
+          "extras": {
+            "source": "89_mask.png",
+            "mask_shape": [
+              225,
+              321
+            ],
+            "image_shape": [
+              227,
+              321
+            ]
+          }
+        },
+        {
+          "image_id": 90,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.1903218247148883,
+          "centroid_offset": 0.03472838623165394,
+          "extras": {
+            "source": "90_mask.png",
+            "mask_shape": [
+              145,
+              161
+            ],
+            "image_shape": [
+              148,
+              173
+            ]
+          }
+        },
+        {
+          "image_id": 91,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.36958502024291495,
+          "centroid_offset": 0.0180920220678635,
+          "extras": {
+            "source": "91_mask.png",
+            "mask_shape": [
+              129,
+              145
+            ],
+            "image_shape": [
+              130,
+              152
+            ]
+          }
+        },
+        {
+          "image_id": 92,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.24579904500660368,
+          "centroid_offset": 0.03688672908374912,
+          "extras": {
+            "source": "92_mask.png",
+            "mask_shape": [
+              193,
+              241
+            ],
+            "image_shape": [
+              193,
+              255
+            ]
+          }
+        },
+        {
+          "image_id": 93,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3790322580645161,
+          "centroid_offset": 0.04336991010701603,
+          "extras": {
+            "source": "93_mask.png",
+            "mask_shape": [
+              305,
+              433
+            ],
+            "image_shape": [
+              310,
+              446
+            ]
+          }
+        },
+        {
+          "image_id": 94,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.20618471231968163,
+          "centroid_offset": 0.09598046950719172,
+          "extras": {
+            "source": "94_mask.png",
+            "mask_shape": [
+              161,
+              209
+            ],
+            "image_shape": [
+              163,
+              222
+            ]
+          }
+        },
+        {
+          "image_id": 95,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.1957594156152168,
+          "centroid_offset": 0.027537514807562908,
+          "extras": {
+            "source": "95_mask.png",
+            "mask_shape": [
+              113,
+              161
+            ],
+            "image_shape": [
+              127,
+              166
+            ]
+          }
+        },
+        {
+          "image_id": 96,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.19842392402505557,
+          "centroid_offset": 0.022469179712710927,
+          "extras": {
+            "source": "96_mask.png",
+            "mask_shape": [
+              145,
+              193
+            ],
+            "image_shape": [
+              147,
+              202
+            ]
+          }
+        },
+        {
+          "image_id": 97,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2466950959488273,
+          "centroid_offset": 0.022476911633163735,
+          "extras": {
+            "source": "97_mask.png",
+            "mask_shape": [
+              129,
+              193
+            ],
+            "image_shape": [
+              140,
+              201
+            ]
+          }
+        },
+        {
+          "image_id": 98,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2946139359698682,
+          "centroid_offset": 0.04416631678672798,
+          "extras": {
+            "source": "98_mask.png",
+            "mask_shape": [
+              177,
+              289
+            ],
+            "image_shape": [
+              180,
+              295
+            ]
+          }
+        },
+        {
+          "image_id": 99,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.28139022944712555,
+          "centroid_offset": 0.03638080871936647,
+          "extras": {
+            "source": "99_mask.png",
+            "mask_shape": [
+              177,
+              369
+            ],
+            "image_shape": [
+              186,
+              381
+            ]
+          }
+        },
+        {
+          "image_id": 100,
+          "label": 1,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2700745369918302,
+          "centroid_offset": 0.03920791032490507,
+          "extras": {
+            "source": "100_mask.png",
+            "mask_shape": [
+              225,
+              257
+            ],
+            "image_shape": [
+              231,
+              266
+            ]
+          }
+        },
+        {
+          "image_id": 101,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.09349429912810195,
+          "centroid_offset": 0.07750060366458339,
+          "extras": {
+            "source": "101_mask.png",
+            "mask_shape": [
+              97,
+              129
+            ],
+            "image_shape": [
+              105,
+              142
+            ]
+          }
+        },
+        {
+          "image_id": 102,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.28088133240804997,
+          "centroid_offset": 0.023613454952724496,
+          "extras": {
+            "source": "102_mask.png",
+            "mask_shape": [
+              129,
+              209
+            ],
+            "image_shape": [
+              131,
+              220
+            ]
+          }
+        },
+        {
+          "image_id": 103,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2061046697841266,
+          "centroid_offset": 0.0031638378309617105,
+          "extras": {
+            "source": "103_mask.png",
+            "mask_shape": [
+              129,
+              225
+            ],
+            "image_shape": [
+              134,
+              233
+            ]
+          }
+        },
+        {
+          "image_id": 104,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.21765696604128315,
+          "centroid_offset": 0.04501910035169488,
+          "extras": {
+            "source": "104_mask.png",
+            "mask_shape": [
+              113,
+              209
+            ],
+            "image_shape": [
+              121,
+              211
+            ]
+          }
+        },
+        {
+          "image_id": 105,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.19640426497277677,
+          "centroid_offset": 0.01723135677965501,
+          "extras": {
+            "source": "105_mask.png",
+            "mask_shape": [
+              145,
+              225
+            ],
+            "image_shape": [
+              152,
+              232
+            ]
+          }
+        },
+        {
+          "image_id": 106,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.3805309734513274,
+          "centroid_offset": 0.05520542287588262,
+          "extras": {
+            "source": "106_mask.png",
+            "mask_shape": [
+              209,
+              337
+            ],
+            "image_shape": [
+              223,
+              339
+            ]
+          }
+        },
+        {
+          "image_id": 107,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.12934419504190353,
+          "centroid_offset": 0.04738168363152852,
+          "extras": {
+            "source": "107_mask.png",
+            "mask_shape": [
+              113,
+              145
+            ],
+            "image_shape": [
+              113,
+              151
+            ]
+          }
+        },
+        {
+          "image_id": 108,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.11379894578313253,
+          "centroid_offset": 0.007220317323326097,
+          "extras": {
+            "source": "108_mask.png",
+            "mask_shape": [
+              81,
+              113
+            ],
+            "image_shape": [
+              83,
+              128
+            ]
+          }
+        },
+        {
+          "image_id": 109,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.27760049266599485,
+          "centroid_offset": 0.03183350139919803,
+          "extras": {
+            "source": "109_mask.png",
+            "mask_shape": [
+              145,
+              225
+            ],
+            "image_shape": [
+              156,
+              229
+            ]
+          }
+        },
+        {
+          "image_id": 110,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.16749249773187241,
+          "centroid_offset": 0.027766563125411762,
+          "extras": {
+            "source": "110_mask.png",
+            "mask_shape": [
+              81,
+              161
+            ],
+            "image_shape": [
+              89,
+              161
+            ]
+          }
+        },
+        {
+          "image_id": 111,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.17343139080245765,
+          "centroid_offset": 0.04987287341667008,
+          "extras": {
+            "source": "111_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              131,
+              164
+            ]
+          }
+        },
+        {
+          "image_id": 112,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.107556080283353,
+          "centroid_offset": 0.03254645923658185,
+          "extras": {
+            "source": "112_mask.png",
+            "mask_shape": [
+              65,
+              113
+            ],
+            "image_shape": [
+              70,
+              121
+            ]
+          }
+        },
+        {
+          "image_id": 113,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2288271013103228,
+          "centroid_offset": 0.03985186083318352,
+          "extras": {
+            "source": "113_mask.png",
+            "mask_shape": [
+              177,
+              289
+            ],
+            "image_shape": [
+              189,
+              298
+            ]
+          }
+        },
+        {
+          "image_id": 114,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.09260299625468164,
+          "centroid_offset": 0.08764636158411038,
+          "extras": {
+            "source": "114_mask.png",
+            "mask_shape": [
+              81,
+              113
+            ],
+            "image_shape": [
+              89,
+              120
+            ]
+          }
+        },
+        {
+          "image_id": 115,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.4462463179683146,
+          "centroid_offset": 0.03625701293762919,
+          "extras": {
+            "source": "115_mask.png",
+            "mask_shape": [
+              305,
+              385
+            ],
+            "image_shape": [
+              318,
+              395
+            ]
+          }
+        },
+        {
+          "image_id": 116,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.26836084752372286,
+          "centroid_offset": 0.062280173890305414,
+          "extras": {
+            "source": "116_mask.png",
+            "mask_shape": [
+              145,
+              193
+            ],
+            "image_shape": [
+              157,
+              196
+            ]
+          }
+        },
+        {
+          "image_id": 117,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2733667143538388,
+          "centroid_offset": 0.06539416492542303,
+          "extras": {
+            "source": "117_mask.png",
+            "mask_shape": [
+              177,
+              225
+            ],
+            "image_shape": [
+              180,
+              233
+            ]
+          }
+        },
+        {
+          "image_id": 118,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.17985771453979546,
+          "centroid_offset": 0.007719947168244291,
+          "extras": {
+            "source": "118_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              130,
+              173
+            ]
+          }
+        },
+        {
+          "image_id": 119,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.2745615040697008,
+          "centroid_offset": 0.046996451436009425,
+          "extras": {
+            "source": "119_mask.png",
+            "mask_shape": [
+              177,
+              273
+            ],
+            "image_shape": [
+              183,
+              286
+            ]
+          }
+        },
+        {
+          "image_id": 120,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.19839486356340288,
+          "centroid_offset": 0.06675919198698932,
+          "extras": {
+            "source": "120_mask.png",
+            "mask_shape": [
+              81,
+              97
+            ],
+            "image_shape": [
+              89,
+              105
+            ]
+          }
+        },
+        {
+          "image_id": 121,
+          "label": 0,
+          "strategy": "busat",
+          "fallback": false,
+          "foreground_ratio": 0.1768888888888889,
+          "centroid_offset": 0.04749011713345931,
+          "extras": {
+            "source": "121_mask.png",
+            "mask_shape": [
+              129,
+              161
+            ],
+            "image_shape": [
+              135,
+              175
+            ]
+          }
+        }
+      ]
     }
   }
 }

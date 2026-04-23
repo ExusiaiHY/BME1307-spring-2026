@@ -39,11 +39,29 @@ part1_data/
 - `machine_diameter_mm`:
   lets the pipeline compare segmentation-based diameter with the device-side
   manual measurement.
-- `gain`, `dynamic_range`, `depth_mm`:
-  needed for the acquisition parameter analysis section in the report.
+- `gain_db`, `range_db`, `depth_cm`:
+  recommended manual acquisition labels for gain, dynamic range, and depth.
+  The loader auto-maps them to the legacy internal keys
+  `gain`, `dynamic_range`, and `depth_mm`.
+- `frequency_mhz`, `image_enhancement`, `gray_map`, `frame_correlation`,
+  `puncture_guidance`, `color_map`:
+  optional scanner settings that are kept in the metadata and carried into the
+  output tables for later analysis.
+- `flow_gain`, `prf`, `angle_degree`, `frame_rate`, `b_suppression`,
+  `wall_filter`, `post_processing`:
+  optional Color Doppler settings for the color-flow acquisitions.
 
 If ROI is missing, the runner falls back to a central search window so the
 first pass can still run immediately after acquisition.
+
+## Using The Current `data/` Folder
+
+If the collected images are already stored under `data/`, create the metadata
+file there and run:
+
+```bash
+python scripts/run_part1.py --metadata data/metadata.csv --images-dir data --save-masks --save-overlays
+```
 
 ## Run
 

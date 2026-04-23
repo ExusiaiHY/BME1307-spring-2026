@@ -1,1 +1,1 @@
-sample_id,file_name,modality,subject_id,side,gain,dynamic_range,depth_mm,pixel_spacing_mm,pixel_spacing_x_mm,pixel_spacing_y_mm,roi_x0,roi_y0,roi_x1,roi_y1,machine_diameter_mm,notes
+sample_id,file_name,modality,subject_id,side,gain_db,depth_cm,range_db,frequency_mhz,image_enhancement,gray_map,frame_correlation,puncture_guidance,color_map,flow_gain,prf,angle_degree,frame_rate,b_suppression,wall_filter,post_processing,pixel_spacing_mm,pixel_spacing_x_mm,pixel_spacing_y_mm,roi_x0,roi_y0,roi_x1,roi_y1,machine_diameter_mm,notes
