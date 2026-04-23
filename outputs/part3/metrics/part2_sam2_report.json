@@ -1,0 +1,14 @@
+{
+  "n_samples": 120,
+  "mean_foreground_ratio": 0.24863093938276787,
+  "median_foreground_ratio": 0.18816634908927,
+  "mean_centroid_offset": 0.04469214380646512,
+  "mean_sam2_iou_score": 0.6795597158682843,
+  "label_counts": {
+    "0": 74,
+    "1": 46
+  },
+  "prompt_sources": {
+    "image_center": 120
+  }
+}

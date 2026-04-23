@@ -1,0 +1,4 @@
+Part 3 notes:
+- Segmentation uses the official SAM2 Hiera base-plus checkpoint via Hugging Face.
+- SAM2 does not ship an ultrasound-specialist checkpoint; note this explicitly in the report.
+- Classification uses image embeddings from OpenCLIP and BiomedCLIP on the Part 2 dataset.
