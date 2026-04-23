@@ -103,6 +103,7 @@
   - Part 1 overlay grid
   - Part 2 overlay grid
   - Part 2 baseline vs Part 3 foundation models 的 ROC 对比图
+- Notion 同步脚本 `scripts/sync_notion_notes.py` 已补上图片块支持，新增 `docs/notion_2026_04_24_figures.md` 用于把 Part 1 / Part 2 / Part 3 的成果图补充同步到项目日志页。
 
 ### Part 3 结果摘要
 

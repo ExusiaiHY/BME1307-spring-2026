@@ -13,36 +13,47 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import os
 import re
-import sys
 import time
-import urllib.request
 import urllib.error
+import urllib.request
 from pathlib import Path
 
 
 NOTION_API = "https://api.notion.com/v1"
-NOTION_VERSION = "2022-06-28"
+NOTION_VERSION = "2026-03-11"
 PAGE_ID = "344e41c3-0079-8032-bbfd-fcc5365e5ac0"
 CHILDREN_BATCH = 90
 
 
-def _headers(token: str) -> dict:
-    return {
+def _headers(token: str, content_type: str | None = "application/json") -> dict:
+    headers = {
         "Authorization": f"Bearer {token}",
         "Notion-Version": NOTION_VERSION,
-        "Content-Type": "application/json",
     }
+    if content_type:
+        headers["Content-Type"] = content_type
+    return headers
 
 
-def _request(method: str, path: str, token: str, body: dict | None = None) -> dict:
+def _request(
+    method: str,
+    path: str,
+    token: str,
+    body: dict | bytes | None = None,
+    content_type: str | None = "application/json",
+) -> dict:
     url = f"{NOTION_API}{path}"
-    data = json.dumps(body).encode("utf-8") if body is not None else None
-    req = urllib.request.Request(url, method=method, headers=_headers(token), data=data)
+    data = json.dumps(body).encode("utf-8") if isinstance(body, dict) else body
+    req = urllib.request.Request(url, method=method, headers=_headers(token, content_type), data=data)
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+            payload = resp.read()
+            if not payload:
+                return {}
+            return json.loads(payload.decode("utf-8"))
     except urllib.error.HTTPError as e:
         detail = e.read().decode("utf-8", errors="replace")
         raise SystemExit(f"Notion API {method} {path} failed ({e.code}): {detail}")
@@ -60,6 +71,7 @@ _INLINE_PATTERN = re.compile(
     r"|(\*(?P<ital>[^*]+)\*)"
     r"|(`(?P<code>[^`]+)`)"
 )
+_IMAGE_PATTERN = re.compile(r"^!\[(?P<alt>[^\]]*)\]\((?P<src>[^)]+)\)$")
 
 
 def parse_rich_text(raw: str) -> list[dict]:
@@ -168,6 +180,97 @@ def _table(rows: list[list[str]]) -> dict:
     }
 
 
+def _image_external(url: str, caption: str) -> dict:
+    return {
+        "object": "block",
+        "type": "image",
+        "image": {
+            "type": "external",
+            "external": {"url": url},
+            "caption": parse_rich_text(caption),
+        },
+    }
+
+
+def _image_file_upload(file_upload_id: str, caption: str) -> dict:
+    return {
+        "object": "block",
+        "type": "image",
+        "image": {
+            "type": "file_upload",
+            "file_upload": {"id": file_upload_id},
+            "caption": parse_rich_text(caption),
+        },
+    }
+
+
+def _multipart_body(field_name: str, file_path: Path, content_type: str) -> tuple[bytes, str]:
+    boundary = f"----CodexNotion{int(time.time() * 1000)}"
+    file_bytes = file_path.read_bytes()
+    parts = [
+        f"--{boundary}\r\n".encode("utf-8"),
+        (
+            f'Content-Disposition: form-data; name="{field_name}"; '
+            f'filename="{file_path.name}"\r\n'
+        ).encode("utf-8"),
+        f"Content-Type: {content_type}\r\n\r\n".encode("utf-8"),
+        file_bytes,
+        b"\r\n",
+        f"--{boundary}--\r\n".encode("utf-8"),
+    ]
+    return b"".join(parts), f"multipart/form-data; boundary={boundary}"
+
+
+def _upload_file(file_path: Path, token: str, cache: dict[Path, str]) -> str:
+    resolved = file_path.resolve()
+    if resolved in cache:
+        return cache[resolved]
+
+    mime = mimetypes.guess_type(resolved.name)[0] or "application/octet-stream"
+    created = _request(
+        "POST",
+        "/file_uploads",
+        token,
+        {
+            "mode": "single_part",
+            "filename": resolved.name,
+            "content_type": mime,
+        },
+    )
+    upload_id = created["id"]
+    body, content_type = _multipart_body("file", resolved, mime)
+    _request("POST", f"/file_uploads/{upload_id}/send", token, body=body, content_type=content_type)
+
+    for _ in range(20):
+        status = _request("GET", f"/file_uploads/{upload_id}", token)
+        state = status.get("status")
+        if state == "uploaded":
+            cache[resolved] = upload_id
+            return upload_id
+        if state in {"failed", "expired"}:
+            raise SystemExit(f"Notion file upload failed for {resolved}: status={state}")
+        time.sleep(0.5)
+    raise SystemExit(f"Timed out waiting for Notion file upload: {resolved}")
+
+
+def _resolve_image_target(target: str, markdown_path: Path) -> Path:
+    raw = Path(target)
+    if raw.is_absolute():
+        return raw
+    return (markdown_path.parent / raw).resolve()
+
+
+def _image_block(target: str, caption: str, markdown_path: Path, token: str, cache: dict[Path, str]) -> dict:
+    if re.match(r"^https?://", target):
+        return _image_external(target, caption)
+
+    file_path = _resolve_image_target(target, markdown_path)
+    if not file_path.exists():
+        raise SystemExit(f"Image path not found: {target} (resolved to {file_path})")
+    upload_id = _upload_file(file_path, token, cache)
+    return _image_file_upload(upload_id, caption)
+
+
 _NOTION_CODE_LANGS = {
     "python", "javascript", "typescript", "bash", "shell", "sh", "yaml",
     "json", "html", "css", "sql", "markdown", "matlab", "c", "c++", "java",
@@ -192,9 +295,10 @@ def _split_table_row(line: str) -> list[str]:
     return [c.strip() for c in cells]
 
 
-def markdown_to_blocks(md: str) -> list[dict]:
+def markdown_to_blocks(md: str, markdown_path: Path, token: str) -> list[dict]:
     lines = md.splitlines()
     blocks: list[dict] = []
+    upload_cache: dict[Path, str] = {}
     i = 0
     n = len(lines)
     while i < n:
@@ -231,6 +335,20 @@ def markdown_to_blocks(md: str) -> list[dict]:
 
         if stripped.startswith("> "):
             blocks.append(_quote(stripped[2:].strip()))
+            i += 1
+            continue
+
+        m = _IMAGE_PATTERN.match(stripped)
+        if m:
+            blocks.append(
+                _image_block(
+                    target=m.group("src").strip(),
+                    caption=m.group("alt").strip(),
+                    markdown_path=markdown_path,
+                    token=token,
+                    cache=upload_cache,
+                )
+            )
             i += 1
             continue
 
@@ -292,7 +410,7 @@ def main() -> None:
     if not token:
         raise SystemExit("NOTION_TOKEN environment variable is required")
     md = args.markdown.read_text(encoding="utf-8")
-    body_blocks = markdown_to_blocks(md)
+    body_blocks = markdown_to_blocks(md, markdown_path=args.markdown.resolve(), token=token)
     all_blocks = section_header(args.title) + body_blocks
     written = append_children(args.page_id, token, all_blocks)
     print(f"[notion] appended {written} blocks to page {args.page_id}")
