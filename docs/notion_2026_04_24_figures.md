@@ -1,110 +1,73 @@
-# 2026-04-24 — 成果图补充
+# 2026-04-24 — 成果图补充（排版优化）
 
-> 这份补充只放结果图，不重复正文分析。
-> 对应仓库产物目录：`outputs/part1/`、`outputs/part2/`、`outputs/part3/`
-
----
-
-## Part 1：颈动脉 classical segmentation overlays
-
-![Part 1 classical overlay: p1_20260421_144838_398（gain=83 dB）](../outputs/part1/overlays/p1_20260421_144838_398_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_144929_380（gain=73 dB）](../outputs/part1/overlays/p1_20260421_144929_380_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_144951_958](../outputs/part1/overlays/p1_20260421_144951_958_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_145121_293](../outputs/part1/overlays/p1_20260421_145121_293_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_145210_894](../outputs/part1/overlays/p1_20260421_145210_894_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_145300_800](../outputs/part1/overlays/p1_20260421_145300_800_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_145450_004（color Doppler fallback）](../outputs/part1/overlays/p1_20260421_145450_004_overlay.png)
-
-![Part 1 classical overlay: p1_20260421_145539_147（color Doppler fallback）](../outputs/part1/overlays/p1_20260421_145539_147_overlay.png)
+> 这一版把原先的单图长列表压缩成 panel figures，更适合直接放进 Notion 和最终报告。
+> 对应产物目录：`outputs/part1/`、`outputs/part2/`、`outputs/part3/`、`outputs/notion/`
 
 ---
 
-## Part 2：classification ROC curves
+## 0. Quick summary
 
-![Part 2 ROC: full + logistic regression](../outputs/part2/roc_full_logreg.png)
-
-![Part 2 ROC: full + SVM](../outputs/part2/roc_full_svm.png)
-
-![Part 2 ROC: full + random forest](../outputs/part2/roc_full_rf.png)
-
-![Part 2 ROC: cv + logistic regression](../outputs/part2/roc_cv_logreg.png)
-
-![Part 2 ROC: cv + SVM](../outputs/part2/roc_cv_svm.png)
-
-![Part 2 ROC: cv + random forest](../outputs/part2/roc_cv_rf.png)
-
-![Part 2 ROC: refined + logistic regression](../outputs/part2/roc_refined_logreg.png)
-
-![Part 2 ROC: refined + SVM（AUC best among classical custom pipelines）](../outputs/part2/roc_refined_svm.png)
-
-![Part 2 ROC: refined + random forest](../outputs/part2/roc_refined_rf.png)
-
-![Part 2 ROC: BUSAT + logistic regression](../outputs/part2/roc_busat_logreg.png)
-
-![Part 2 ROC: BUSAT + SVM（accuracy best）](../outputs/part2/roc_busat_svm.png)
-
-![Part 2 ROC: BUSAT + random forest（AUC best overall）](../outputs/part2/roc_busat_rf.png)
+| part | highlight | metric |
+|---|---|---|
+| Part 1 classical | 8 张颈动脉图全部落在文献直径范围内 | `8 / 8` in `4.3-7.7 mm` |
+| Part 2 baseline | BUSAT 仍是当前最强 baseline | `BUSAT + RF AUC = 0.940`, `BUSAT + SVM ACC = 0.892` |
+| Part 3 SAM2 on Part 1 | Hough prompt 明显优于 crop-center fallback | `6 / 8` in-range |
+| Part 3 FM classification | foundation-model 里最优是 BiomedCLIP + SVM | `ACC = 0.858`, `AUC = 0.935` |
 
 ---
 
-## Part 3：SAM2 on Part 1
+## 1. Part 1 classical segmentation
 
-![Part 3 SAM2 overlay on Part 1: p1_20260421_144838_398（crop-center fallback failure case）](../outputs/part3/overlays/part1_sam2/p1_20260421_144838_398_overlay.png)
+- 图里汇总了 6 张 B-mode 和 2 张 Color Doppler fallback overlay。
+- 这一部分的 classical pipeline 在 8 张图上都给出了合理颈动脉候选。
 
-![Part 3 SAM2 overlay on Part 1: p1_20260421_144929_380（crop-center fallback failure case）](../outputs/part3/overlays/part1_sam2/p1_20260421_144929_380_overlay.png)
-
-![Part 3 SAM2 overlay on Part 1: p1_20260421_144951_958](../outputs/part3/overlays/part1_sam2/p1_20260421_144951_958_overlay.png)
-
-![Part 3 SAM2 overlay on Part 1: p1_20260421_145121_293](../outputs/part3/overlays/part1_sam2/p1_20260421_145121_293_overlay.png)
-
-![Part 3 SAM2 overlay on Part 1: p1_20260421_145210_894](../outputs/part3/overlays/part1_sam2/p1_20260421_145210_894_overlay.png)
-
-![Part 3 SAM2 overlay on Part 1: p1_20260421_145300_800](../outputs/part3/overlays/part1_sam2/p1_20260421_145300_800_overlay.png)
-
-![Part 3 SAM2 overlay on Part 1: p1_20260421_145450_004](../outputs/part3/overlays/part1_sam2/p1_20260421_145450_004_overlay.png)
-
-![Part 3 SAM2 overlay on Part 1: p1_20260421_145539_147](../outputs/part3/overlays/part1_sam2/p1_20260421_145539_147_overlay.png)
+![Part 1 classical segmentation panel](../outputs/notion/part1_classical_grid.png)
 
 ---
 
-## Part 3：SAM2 on Part 2 representative overlays
+## 2. Part 2 classification ROC
 
-![Part 3 SAM2 overlay on Part 2: image 5（low IoU example）](../outputs/part3/overlays/part2_sam2/5_overlay.png)
+| setting | best accuracy | best AUC |
+|---|---:|---:|
+| full | 0.817 | 0.915 |
+| refined | 0.875 | 0.924 |
+| BUSAT | **0.892** | **0.940** |
 
-![Part 3 SAM2 overlay on Part 2: image 26（tiny-mask failure case）](../outputs/part3/overlays/part2_sam2/26_overlay.png)
+- 这里只放最有代表性的四张 ROC：`full + svm`、`refined + svm`、`BUSAT + svm`、`BUSAT + rf`。
+- 目的不是把 12 张 ROC 全堆进去，而是突出“refined 已接近 BUSAT，但 BUSAT 仍略强”。
 
-![Part 3 SAM2 overlay on Part 2: image 117（low IoU example）](../outputs/part3/overlays/part2_sam2/117_overlay.png)
-
-![Part 3 SAM2 overlay on Part 2: image 18（high IoU example）](../outputs/part3/overlays/part2_sam2/18_overlay.png)
-
-![Part 3 SAM2 overlay on Part 2: image 20（high IoU example）](../outputs/part3/overlays/part2_sam2/20_overlay.png)
-
-![Part 3 SAM2 overlay on Part 2: image 82（high IoU example）](../outputs/part3/overlays/part2_sam2/82_overlay.png)
+![Part 2 ROC panel](../outputs/notion/part2_roc_grid.png)
 
 ---
 
-## Part 3：foundation-model ROC curves
+## 3. Part 3 segmentation with SAM2
 
-![Part 3 ROC: OpenCLIP + logistic regression](../outputs/part3/roc/roc_openclip_logreg.png)
+### 3.1 Part 1
 
-![Part 3 ROC: OpenCLIP + SVM](../outputs/part3/roc/roc_openclip_svm.png)
+- 前两张是 crop-center fallback 的失败案例。
+- 后 6 张是 Hough point prompt，结果明显稳定得多。
 
-![Part 3 ROC: OpenCLIP + random forest](../outputs/part3/roc/roc_openclip_rf.png)
+![Part 3 SAM2 Part 1 panel](../outputs/notion/part3_part1_sam2_grid.png)
 
-![Part 3 ROC: BiomedCLIP + logistic regression](../outputs/part3/roc/roc_biomedclip_logreg.png)
+### 3.2 Part 2
 
-![Part 3 ROC: BiomedCLIP + SVM（foundation-model group best）](../outputs/part3/roc/roc_biomedclip_svm.png)
+- 这里选了 3 张低 IoU / 失败案例和 3 张高 IoU 案例。
+- 这样比把 120 张 overlay 全贴出来更能说明 zero-shot prompt segmentation 的波动性。
 
-![Part 3 ROC: BiomedCLIP + random forest](../outputs/part3/roc/roc_biomedclip_rf.png)
+![Part 3 SAM2 Part 2 panel](../outputs/notion/part3_part2_sam2_examples.png)
 
-![Part 3 ROC comparison: logistic regression baseline vs foundation models](../outputs/part3/roc/roc_compare_logreg.png)
+---
 
-![Part 3 ROC comparison: SVM baseline vs foundation models](../outputs/part3/roc/roc_compare_svm.png)
+## 4. Part 3 foundation-model ROC
 
-![Part 3 ROC comparison: random forest baseline vs foundation models](../outputs/part3/roc/roc_compare_rf.png)
+| encoder | model | accuracy | AUC |
+|---|---|---:|---:|
+| OpenCLIP | logreg | 0.833 | 0.916 |
+| BiomedCLIP | svm | **0.858** | **0.935** |
+| BUSAT baseline | svm | **0.892** | 0.937 |
+| BUSAT baseline | rf | 0.883 | **0.940** |
+
+- 这一页把 1 张 best FM ROC 和 3 张 comparison ROC 合在一起。
+- 结论很直接：**BiomedCLIP + SVM 已经非常接近 BUSAT，但还没有超过。**
+
+![Part 3 foundation-model ROC panel](../outputs/notion/part3_foundation_roc_grid.png)
