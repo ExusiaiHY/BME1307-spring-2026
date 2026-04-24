@@ -17,7 +17,7 @@ help:
 		'  make part2          Run Part 2 full/cv/refined baseline' \
 		'  make part2-busat    Run Part 2 including pre-exported BUSAT masks' \
 		'  make report-figures Generate report figures and copy them to paper/figures' \
-		'  make paper          Build paper/main.tex with latexmk' \
+		'  make paper          Build paper/main.tex with XeLaTeX via latexmk' \
 		'  make docker-build   Build the core Docker image' \
 		'  make docker-check   Check Docker imports and mounted data' \
 		'  make docker-part2   Run Part 2 baseline in Docker' \
@@ -58,10 +58,14 @@ report-figures:
 
 paper:
 	@if ! command -v latexmk >/dev/null 2>&1; then \
-		printf '%s\n' 'latexmk not found. Install MacTeX/TeX Live or upload paper/ to Overleaf.'; \
+		printf '%s\n' 'latexmk not found. Install MacTeX/TeX Live with XeLaTeX or upload paper/ to Overleaf.'; \
 		exit 127; \
 	fi
-	cd paper && latexmk -pdf main.tex
+	@if ! command -v xelatex >/dev/null 2>&1; then \
+		printf '%s\n' 'xelatex not found. Install MacTeX/TeX Live with XeLaTeX or upload paper/ to Overleaf.'; \
+		exit 127; \
+	fi
+	cd paper && latexmk -xelatex main.tex
 
 paper-clean:
 	@if command -v latexmk >/dev/null 2>&1; then \
