@@ -10,15 +10,17 @@ __pycache__
 .idea
 .vscode
 .DS_Store
+.cache
 
-# Dataset is mounted at runtime via -v
+# Local data and third-party toolboxes are mounted at runtime.
+data/
+part1_data/
 Breast-ultrasound-samples/
+US Toolbox Ver. 2.0/
 
-# Local outputs stay out of the image
+# Local outputs stay out of the image.
 outputs/
-docs/
 *.pdf
 
 # Docker artifacts
-Dockerfile
-.dockerignore
+*.tar

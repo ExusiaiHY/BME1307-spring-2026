@@ -16,6 +16,7 @@ __pycache__/
 .idea/
 .vscode/
 .cache/
+.env
 
 # macOS
 .DS_Store
@@ -43,3 +44,8 @@ US Toolbox Ver. 2.0/
 
 # Keep docs/pdf if needed
 !docs/*.pdf
+
+# Keep paper-ready figures under version control.
+!paper/
+!paper/figures/
+!paper/figures/*.png

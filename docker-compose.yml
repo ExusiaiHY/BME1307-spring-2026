@@ -1,0 +1,74 @@
+x-bme1307-env: &bme1307-env
+  BUSAT_DATA_DIR: /data/busat
+  BUSAT_OUTPUTS_DIR: /app/outputs/part2
+  BUSAT_MASKS_DIR: /app/outputs/part2/busat_masks
+  PART1_METADATA_FILE: /data/part1/metadata.csv
+  PART1_IMAGES_DIR: /data/part1
+  PART1_OUTPUTS_DIR: /app/outputs/part1
+  PART3_PART1_METADATA_FILE: /data/part1/metadata.csv
+  PART3_PART1_IMAGES_DIR: /data/part1
+  PART3_OUTPUTS_DIR: /app/outputs/part3
+  PART3_CACHE_DIR: /app/.cache/part3
+
+x-bme1307-volumes: &bme1307-volumes
+  - "${BUSAT_HOST_DATA_DIR:-./Breast-ultrasound-samples/Ultrasound Samples}:/data/busat:ro"
+  - "${PART1_HOST_DATA_DIR:-./data}:/data/part1:ro"
+  - "${OUTPUTS_HOST_DIR:-./outputs}:/app/outputs"
+  - "${CACHE_HOST_DIR:-./.cache}:/app/.cache"
+
+services:
+  check:
+    image: bme1307:core
+    build:
+      context: .
+      target: core
+    environment: *bme1307-env
+    volumes: *bme1307-volumes
+    command: ["python", "scripts/check_environment.py", "--mode", "core", "--check-data"]
+
+  part1:
+    image: bme1307:core
+    build:
+      context: .
+      target: core
+    environment: *bme1307-env
+    volumes: *bme1307-volumes
+    command: ["python", "scripts/run_part1.py", "--save-masks", "--save-overlays"]
+
+  part2:
+    image: bme1307:core
+    build:
+      context: .
+      target: core
+    environment: *bme1307-env
+    volumes: *bme1307-volumes
+    command: ["python", "scripts/run_part2.py", "--strategies", "full", "cv", "refined"]
+
+  part2-busat:
+    image: bme1307:core
+    build:
+      context: .
+      target: core
+    environment: *bme1307-env
+    volumes: *bme1307-volumes
+    command: ["python", "scripts/run_part2.py", "--strategies", "full", "cv", "refined", "busat", "--busat-masks-dir", "/app/outputs/part2/busat_masks"]
+
+  notebook:
+    image: bme1307:dev
+    build:
+      context: .
+      target: dev
+    environment: *bme1307-env
+    volumes: *bme1307-volumes
+    ports:
+      - "8888:8888"
+    command: ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--ServerApp.token=bme1307"]
+
+  part3:
+    image: bme1307:fm
+    build:
+      context: .
+      target: fm
+    environment: *bme1307-env
+    volumes: *bme1307-volumes
+    command: ["python", "scripts/run_part3.py", "--device", "cpu", "--part2-max-images", "10", "--skip-part2-overlays"]

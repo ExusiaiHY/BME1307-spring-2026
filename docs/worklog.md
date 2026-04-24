@@ -135,3 +135,40 @@
 - 从 `outputs/part3/metrics/classification_comparison.csv` 中提炼一张最终汇总表，直接用于报告正文。
 - 挑 2–4 张 Part 1 的成功 / 失败 overlay，加上 4–6 张 Part 2 overlay，放进 Part 3 小节。
 - 在报告讨论里加入一段解释：为什么 BiomedCLIP 接近甚至逼近 BUSAT 特征工程，但 Part 1 的零样本 SAM2 仍然容易被 prompt 质量限制。
+
+## 2026-04-25
+
+### 今日进展
+
+- 完成 Part 4 开放思考题草稿，文件为 `docs/part4_open_questions.md`。
+- Part 4 的核心观点定为：医学图像处理不应简单地用 foundation model 替代 classical pipeline，而应构建“采集感知 + 不确定性驱动”的临床闭环系统。
+- 草稿已经把 Part 1-3 的实验证据纳入论证：
+  - Part 1 classical pipeline 在 8 张颈动脉图上输出合理直径；
+  - Part 2 `BUSAT + SVM` accuracy 为 `0.892`，`BUSAT + RF` AUC 为 `0.940`；
+  - Part 3 `BiomedCLIP + SVM` AUC 为 `0.935`，接近 BUSAT baseline，但 SAM2 分割仍受 prompt 质量限制。
+- 文末补了后续转 IEEE LaTeX 时可用的参考来源，包括 MedSAM、SAM2、BiomedCLIP、USFM、FDA AI-enabled devices 页面和 FDA PCCP guidance。
+- 启动组员复现/部署工程：
+  - 重写 `Dockerfile` 为 multi-target：`core` 跑 Part 1/2，`dev` 跑 JupyterLab，`fm` 跑 Part 3 foundation models。
+  - 新增 `docker-compose.yml`、`.env.example` 和 `Makefile`，组员可以用 `make docker-check`、`make docker-part2`、`make docker-busat`、`make docker-notebook` 直接启动常用流程。
+  - 新增分层依赖文件 `requirements-core.txt`、`requirements-dev.txt`、`requirements-fm.txt`，避免默认把 PyTorch/foundation-model 依赖塞进所有人的基础环境。
+  - 新增 `scripts/check_environment.py` 和 `docs/environment_setup.md`，用于检查依赖、数据挂载和说明 BUSAT masks / Part 3 cache 的共享方式。
+- 本地验证：
+  - `make check-data` 通过；
+  - `scripts/check_environment.py --mode fm` 通过；
+  - `docker compose config --quiet` 通过。
+- Docker build 实测开始后可进入基础镜像下载阶段，但当前本机外部镜像下载速度过慢，完整镜像构建未在本轮跑完；配置层面已验证，后续网络稳定时再补一次完整 `make docker-build && make docker-check`。
+- 启动并完成第一版 IEEE 论文工程：
+  - 新增 `paper/main.tex`、`paper/references.bib`、`paper/latexmkrc`、`paper/README.md`；
+  - 将 `outputs/report_figures/*.png` 同步到 `paper/figures/` 并在 `.gitignore` 中保留论文图表；
+  - 修改 `scripts/build_report_figures.py`，使其生成报告图表后自动复制到 `paper/figures/`；
+  - 新增 `make report-figures`、`make paper`、`make paper-clean`。
+- 总 README 已改成“下载仓库后如何跑完整流程”的顺序：放置数据 → Docker 检查 → Part 1/2/BUSAT → 报告图表 → IEEE LaTeX 论文。
+- 验证：
+  - `make report-figures` 已通过；
+  - `make paper` 在本机按预期提示缺少 `latexmk`，需要 MacTeX/TeX Live 或 Overleaf；
+  - LaTeX 图表路径和 BibTeX 引用做了静态检查，未发现缺失图表或缺失引用。
+
+### 下一步
+
+- 替换 `paper/main.tex` 中的作者姓名和邮箱占位符。
+- 在安装 LaTeX 的环境或 Overleaf 中进行最终 PDF 编译和版面检查。

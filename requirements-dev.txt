@@ -1,0 +1,6 @@
+-r requirements-core.txt
+jupyter==1.1.1
+jupyterlab==4.5.6
+ipykernel==6.31.0
+ipywidgets==8.1.8
+notebook==7.5.5

@@ -1,0 +1,6 @@
+$pdf_mode = 1;
+$bibtex_use = 1;
+$out_dir = 'build';
+$aux_dir = 'build';
+$pdflatex = 'pdflatex -interaction=nonstopmode -file-line-error %O %S';
+$clean_ext = 'acn acr alg aux bbl blg glg glo gls ist lof log lot out toc';
