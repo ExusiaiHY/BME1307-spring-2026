@@ -2,6 +2,8 @@ PYTHON ?= python3
 VENV ?= .venv
 PY := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
+TEXBIN ?= $(HOME)/Library/TinyTeX/bin/universal-darwin
+export PATH := $(TEXBIN):$(PATH)
 
 .PHONY: help setup setup-dev setup-fm check check-data part1 part2 part2-busat report-figures paper paper-clean docker-build docker-check docker-part1 docker-part2 docker-busat docker-notebook docker-part3
 
